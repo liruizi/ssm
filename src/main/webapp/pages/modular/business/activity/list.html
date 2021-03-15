@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/js/list.css">
+    <script src="/Users/ruizi/workspace/guns/src/main/webapp/assets/common/libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/Users/ruizi/workspace/guns/src/main/webapp/assets/common/js/list.js"></script>
+
+</head>
+<body>
+<button onclick="f_kg()">新增</button>
+
+<div class="modal-warning" id="w_warning" >
+    <div class="modal-header">
+        <div class="modal-delete">
+            <span id="closets">×</span>
+        </div>
+        <h4 class="modal-title">请选择相关信息</h4>
+    </div>
+
+    <div class="modal-wzsm">
+        <form name="formAdd" method="post" action="book01.html">
+            <table width="85%" style="border: 0;margin:0 auto;">
+                <tr>
+                    <th>行政单位：</th>
+                    <td>
+                        <label><input type="radio" value="" name="radio1" />东城区</label>
+                        <label><input type="radio" value="" name="radio1" />西城区</label>
+                        <label><input type="radio" value="" name="radio1" />海淀区</label>
+                        <label><input type="radio" value="" name="radio1" />朝阳区</label>
+                        <label><input type="radio" value="" name="radio1" />门头沟</label>
+                        <label><input type="radio" value="" name="radio1" />通州区</label>
+                        <label><input type="radio" value="" name="radio1" />北京市</label>
+                        <label><input type="radio" value="" name="radio1" />小康</label>
+                        <p class="alert-error">请选择合适的行政单位！</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>活动方式：</th>
+                    <td>
+                        <label><input type="radio" value="" name="radio2" />大型活动</label>
+                        <label><input type="radio" value="" name="radio2" />党政机关</label>
+                        <label><input type="radio" value="" name="radio2" />参观活动</label>
+                        <label><input type="radio" value="" name="radio2" />社区培训</label>
+                        <label><input type="radio" value="" name="radio2" />学校</label>
+                        <p class="alert-error">请选择合适的活动方式！</p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="xuanze">
+            <span class="fangqi" id="fangqi"><a href="javascript:void(0);">取　消</a></span>
+            <span class="continue" id="continue"><a href="javascript:void(0);">确　定</a></span>
+        </div>
+    </div>
+</div>
+<div class="modal-mengban" id="w_mengban" ></div>
+<script>
+
+</script>
+</body>
+</html>
