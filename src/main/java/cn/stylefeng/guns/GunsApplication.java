@@ -16,7 +16,6 @@ import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 @SpringBootApplication(scanBasePackages = {"cn.stylefeng"}, exclude = {FlywayAutoConfiguration.class, GunsDataSourceAutoConfiguration.class})
 public class GunsApplication {
 
-	
     public static void main(String[] args) {
         SpringApplication.run(GunsApplication.class, args);
         log.info(GunsApplication.class.getSimpleName() + " is success!");
