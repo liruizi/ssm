@@ -2,26 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-    <link href="css/all.css" rel="stylesheet" type="text/css">
-    <link href="js/editor/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="js/editor/css/froala_editor.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="css/print.css">
-	<script src="js/print.js"></script>
+<title>我的活动</title>
+    <link type="text/css" rel="stylesheet" href="/assets/common/activity/css/all.css" />
+	<link rel="stylesheet" href="/assets/common/activity/css/print.css"/>
+	<script src="/assets/common/activity/js/print.js"></script>
+	<script src="/assets/expand/plugins/jquery/jquery-3.2.1.min.js"></script>	
 </head>
 
 <body>
 <div class="card ">
     <div class="card-header">
         <button class="print-btn" onclick="doPrint()">打印</button>
-        <button class="print-btn" onclick="window.history.back();">上一页</button>
     </div>
     <div>
         <ccc>
             <div class="card-body">
             <div class="book_con01">
-                ${window.location.search}
-
                 <h1 class="book_h01">北京市东城区垃圾分类宣传培训活动任务单</h1>
                 <p class="book_p" style="padding-bottom: 13px;margin-top:-3px;">
                     <span class="book_titSpan" style="float:left"><label>活动编号-21-001</label></span>
@@ -257,55 +253,6 @@
         </div>
         </ccc>
     </div>
-
-    <script  src="js/jquery/jQuery-2.2.0.min.js"></script>
-    <script src="js/editor/js/froala_editor.min.js"></script>
-    <script src="js/editor/js/plugins/tables.min.js"></script>
-    <script src="js/editor/js/plugins/lists.min.js"></script>
-    <script src="js/editor/js/plugins/colors.min.js"></script>
-    <script src="js/editor/js/plugins/media_manager.min.js"></script>
-    <script src="js/editor/js/plugins/font_family.min.js"></script>
-    <script src="js/editor/js/plugins/font_size.min.js"></script>
-    <script src="js/editor/js/plugins/block_styles.min.js"></script>
-    <script src="js/editor/js/plugins/video.min.js"></script>
-    <script src="js/date/js/laydate.js"></script>
-    <script>
-        $(function(){
-            $('#editor').editable({inlineMode: false, alwaysBlank: true})
-        });
-    </script>
-    <script >
-        $.validator.setDefaults({
-            submitHandler: function() {
-                alert("修改成功");
-            }
-        });
-        $().ready(function() {
-            $("#form_demo").validate();
-        });
-    </script>
-    <script>
-        !function(){
-            laydate.skin('danlan');//
-            laydate({elem: '#demo'});
-            laydate({elem: '#demo1'});//
-        }();
-    </script>
 </div>
-
-<script>
-    
-    var url=location.href;
-    var i=url.indexOf('?');
-    if(i==-1)return;
-    var querystr=url.substr(i+1);
-    var arr1=querystr.split('&');
-    var arr2=new Object();
-    for (i in arr1){
-        var t=arr1[i].split('=');
-        arr2[t[0]]=t[1];
-    }
-
-</script>
 </body>
 </html>

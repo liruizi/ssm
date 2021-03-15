@@ -68,7 +68,10 @@ public class ActivityViewController {
 //    }
     
     @GetResource(name = "示例方法", path = "/activity/test")
-    public ResponseData renderSuccess() {
+    @ResponseBody
+    public ResponseData renderSuccess(String area,String type) {
+    	System.out.println(area);
+    	System.out.println(type);
     	String str="{'number':1,'total':1,'type':123,'area':'SSSS'}";
         return new SuccessResponseData(str);
     }

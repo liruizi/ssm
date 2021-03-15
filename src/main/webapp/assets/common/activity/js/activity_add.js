@@ -20,18 +20,19 @@ function f_kg(){
         }
         shake($(".alert-error"),"toBlod",2);
         if(is_error){
-            var radio1 = $("radio[name='radio1']").val();
-            var radio2 = $("radio[name='radio2']").val();
+            var area =$("#radio1").val();	
+            var type =$("#radio2").val();	
             $.ajax({
                 type: "GET",
                 url: "../activity/test",
-                data:{'radio1':radio1,'radio2':radio2},
+                data:{'area':area,'type':type},
                 success: function(r){
-                	
-                    // (success=true, code=00000, message=请求成功, data={'number':1,'total':1,'type':123,'area':'SSSS'})
-
-//                    window.open(r);
-                    window.open("../pages/modular/business/activity/book01.html"+r);
+                	if(r.code == 00000){
+                		 var d = eval("(" + r.data + ")");  // 将json字符串数据解析成对象
+                         window.location.href="../pages/modular/business/activity/book01.html";
+					}else{
+						alert(r.msg);
+					}
                 }
             });
         }
