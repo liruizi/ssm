@@ -20,16 +20,17 @@ function f_kg(){
         }
         shake($(".alert-error"),"toBlod",2);
         if(is_error){
-            var area =$("#radio1").val();	
-            var type =$("#radio2").val();	
+        	var area = $("input[name='radio1']:checked").val();
+        	var type = $("input[name='radio2']:checked").val();	
             $.ajax({
                 type: "GET",
-                url: "../activity/test",
+                url: "../activity/addType",
                 data:{'area':area,'type':type},
                 success: function(r){
                 	if(r.code == 00000){
                 		 var d = eval("(" + r.data + ")");  // 将json字符串数据解析成对象
-                         window.location.href="../pages/modular/business/activity/book01.html";
+                		 var area=d.area;
+                         window.location.href="../pages/modular/business/activity/addType.html?area="+encodeURIComponent(area);
 					}else{
 						alert(r.msg);
 					}

@@ -3,7 +3,7 @@
 <mapper namespace="cn.stylefeng.guns.modular.business.mapper.ActivityMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-	<resultMap type="cn.stylefeng.guns.modular.business.entity.Activity" id="activityMap">
+	<resultMap id="activityMap" type="cn.stylefeng.guns.modular.business.entity.Activity">
 		<result property="id" column="id" />
 		<result property="number" column="number" />
 		<result property="year" column="year" />
@@ -14,17 +14,19 @@
 		<result property="updateTime" column="update_time" />
 	</resultMap>
 
-	<select id="findActivtyInfo" resultType="cn.stylefeng.guns.modular.business.entity.Activity">
-		select * from tb_activity
-		<choose>
-			<when test="sidx != null and sidx.trim() != ''">
-				order by ${sidx} ${order}
-			</when>
-			<otherwise>
-				order by id desc
-			</otherwise>
-		</choose>
+ 	<!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,number,year,area,total,type
+    </sql>
 
+	<select id="findActivtyInfo" resultMap="activityMap">
+		select  <include refid="Base_Column_List" /> from tb_activity
+		 <if test="area !=null and area !=''">
+                and area = #{area,jdbcType=VARCHAR}
+          </if>
+         <if test="type !=null and type !=''">
+             and type = #{type,jdbcType=VARCHAR}
+         </if>
 	</select>
 
 </mapper>

@@ -1,6 +1,13 @@
 package cn.stylefeng.guns.modular.business.service.impl;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,9 +33,31 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 @Service
 public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> implements ActivityService {
 
+	
+	
 	@Override
-	public Activity findActivtyInfo(Activity activity) {
-		// TODO Auto-generated method stub
+	public Activity findActivtyInfo(String area,String type) {
+		Calendar cal = Calendar.getInstance();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("area", area);
+		map.put("year", cal.get(Calendar.YEAR));
+		
+		
+		
+		
+		List<Activity> activity = this.baseMapper.selectByMap(map);
+		if (activity.isEmpty()) {
+			Activity activityInfo = new Activity();
+			activityInfo.setArea(area);
+			activityInfo.setNumber(1);
+			activityInfo.setTotal(1);
+			activityInfo.setType(type);
+			activityInfo.setCreateTime(new Date());
+			activityInfo.setUpdateTime(new Date());
+			activityInfo.setYear(cal.get(Calendar.YEAR) + "");
+	        this.save(activityInfo);
+			return activityInfo;
+		}
 		return null;
 	}
 

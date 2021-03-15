@@ -16,7 +16,7 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 public interface ActivityService extends IService<Activity> {
 
 	// 通过城区查询
-	Activity findActivtyInfo(Activity activity);
+	Activity findActivtyInfo(String area,String type);
 	
 	  /**
      * 获取资源分页列表
