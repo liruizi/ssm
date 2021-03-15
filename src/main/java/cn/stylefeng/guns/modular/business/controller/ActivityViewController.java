@@ -58,12 +58,18 @@ public class ActivityViewController {
      * @author fengshuonan
      * @date 2021/1/24 10:5
      */
+//    @GetResource(name = "示例方法", path = "/activity/test")
+//    @ResponseBody
+//    public String renderSuccess() {
+//        String str="?number=1&total=1&type=123&area=SSSS";
+////        String str="{'number':1,'total':1,'type':123,'area':'SSSS'}";
+//        System.out.println(str);
+//        return str;
+//    }
+    
     @GetResource(name = "示例方法", path = "/activity/test")
-    @ResponseBody
-    public String renderSuccess() {
-        String str="?number=1&total=1&type=123&area=SSSS";
-//        String str="{'number':1,'total':1,'type':123,'area':'SSSS'}";
-        System.out.println(str);
-        return str;
+    public ResponseData renderSuccess() {
+    	String str="{'number':1,'total':1,'type':123,'area':'SSSS'}";
+        return new SuccessResponseData(str);
     }
 }

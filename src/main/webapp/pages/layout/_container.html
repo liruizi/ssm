@@ -60,7 +60,6 @@ ${layoutContent}
 </script>
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
-<script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
 
 <!-- 插件js -->
 @if(isNotEmpty(plugins)){
@@ -89,6 +88,8 @@ ${layoutContent}
             @item = ctxPath + item;
         @}
         <script src="${item}?v=${constants.getReleaseVersion()}"></script>
+        <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
+        <script src="${ctxPath}/assets/common/activity/js/activity_add.js?v=${constants.getReleaseVersion()}"></script>
     @}
 @}
 </body>

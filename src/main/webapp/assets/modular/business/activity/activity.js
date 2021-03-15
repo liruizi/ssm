@@ -49,7 +49,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 弹出添加对话框
     Position.openAddDlg = function () {
         func.open({
-            title: '添加职111位',
+            title: '添加职位',
             content: Feng.ctxPath + '/view/position/addView',
             tableId: Position.tableId
         });
@@ -121,7 +121,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
 
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
-
         // Position.openAddDlg();
     });
 

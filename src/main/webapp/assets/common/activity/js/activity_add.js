@@ -8,10 +8,6 @@ function f_kg(){
     $("#continue").click(function(){
         $("#w_warning").hide(200);
         $("#w_mengban").delay(100).fadeOut(200);
-    })
-}
-$(function () {
-    $(".continue a").on("click", this, function (e) {
         $(".modal-wzsm table tr p").hide();
         var is_error = true;
         if(!$(".modal-wzsm table tr:first-child input[type='radio']").is(':checked')){
@@ -24,14 +20,26 @@ $(function () {
         }
         shake($(".alert-error"),"toBlod",2);
         if(is_error){
-            $("form[name='formAdd']").submit();
+            var radio1 = $("radio[name='radio1']").val();
+            var radio2 = $("radio[name='radio2']").val();
+            $.ajax({
+                type: "GET",
+                url: "../activity/test",
+                data:{'radio1':radio1,'radio2':radio2},
+                success: function(r){
+                	
+                    // (success=true, code=00000, message=请求成功, data={'number':1,'total':1,'type':123,'area':'SSSS'})
+
+//                    window.open(r);
+                    window.open("../pages/modular/business/activity/book01.html"+r);
+                }
+            });
         }
         return is_error;
-    });
-    $(".modal-wzsm table tr input[type='radio']").change(function () {
-        $(this).parent().siblings("p").hide();
-    });
-});
+
+    })
+}
+
 function shake(element,className,times){
     var i = 0,
         t = false ,
@@ -50,6 +58,3 @@ function shake(element,className,times){
         }
     },200);
 };
-
-
-
