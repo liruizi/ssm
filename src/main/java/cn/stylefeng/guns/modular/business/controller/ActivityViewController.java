@@ -70,6 +70,7 @@ public class ActivityViewController {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
 		Activity activityInfo = activityService.findActivtyInfo(area,type);
+		System.out.println(JSON.toJSON(activityInfo));
         return new SuccessResponseData(JSON.toJSON(activityInfo));
     }
 }

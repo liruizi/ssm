@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -41,10 +40,6 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("area", area);
 		map.put("year", cal.get(Calendar.YEAR));
-		
-		
-		
-		
 		List<Activity> activity = this.baseMapper.selectByMap(map);
 		if (activity.isEmpty()) {
 			Activity activityInfo = new Activity();
@@ -58,7 +53,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	        this.save(activityInfo);
 			return activityInfo;
 		}
-		return null;
+		return activity.get(0);
 	}
 
 	@Override

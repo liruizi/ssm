@@ -30,6 +30,7 @@ function f_kg(){
                 	if(r.code == 00000){
                 		 var d = eval("(" + r.data + ")");  // 将json字符串数据解析成对象
                 		 var area=d.area;
+                     	 alert(area);
                          window.location.href="../pages/modular/business/activity/addType.html?area="+encodeURIComponent(area);
 					}else{
 						alert(r.msg);
