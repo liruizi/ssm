@@ -1,0 +1,243 @@
+.modal-mengban {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    background: #000000;
+    opacity: 0.8 !important;
+    filter: alpha(opacity=80) !important;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-warning {
+    position: fixed;
+    left: 50%;
+    top: 75px;
+    margin-left: -350px;
+    width: 600px;
+    height: 350px;
+    background: #fff;
+    z-index: 1001;
+    display: none;
+}
+.modal-header{
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    height: 30px;
+    line-height: 30px;
+}
+.modal-delete {
+    width: 100%;
+    position: relative;
+}
+.modal-title{
+    font-size: 18px;
+    margin: 0;
+    font-weight: normal;
+}
+.modal-delete span {
+    font-size: 21px;
+    font-weight: 700;
+    color:#aaa;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+}
+.modal-delete span:hover{
+    color:#333;
+}
+
+.modal-wzsm {
+    width: 600px;
+    height: 195px;
+    margin: 10px auto 0;
+    line-height: 35px;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    font-family: "Microsoft YaHei";
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.modal-wzsm p {
+    font-size: 20px;
+    text-align: left;
+    font-family: "Microsoft YaHei";
+}
+
+.modal-footer {
+    width: 100%;
+    height: 105px;
+    font-size: 24px;
+    color: #000;
+}
+
+.modal-footer span {
+    cursor: pointer;
+    font-family: "Microsoft YaHei";
+}
+.continue a,.fangqi a {
+    font-size:18px;
+    line-height: 70px;
+    padding:6px 12px;
+    margin:0 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration:none;
+}
+.continue a{
+    color:#fff;
+    background:#337ab7;
+    border:1px solid #2e6da4;
+}
+.fangqi a{
+    color:#333;
+    background: #fff;
+    border:1px solid #ccc;
+ }
+.continue a:hover{
+    background-color: #2b669a;
+    color:#fff;
+}
+.fangqi a:hover{
+    background-color: #eee;
+}
+
+.xuanze {
+    width: 100%;
+    height: 42px;
+    text-align: center;
+}
+.modal-wzsm th{
+    text-align: right;
+    width: 20%;
+    padding:5px 0;
+    vertical-align: top;
+}
+
+.modal-wzsm label{
+    white-space: nowrap;
+    margin-right:18px;
+}
+.modal-wzsm label input[type="radio"]{
+    display: inline-block;
+    vertical-align:middle;
+    cursor: pointer;
+    position: relative;
+    margin-top:-1px;
+    margin-right:5px;
+    width: 20px;
+    height: 20px;
+    background: #eee;
+    border:1px solid #ddd;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+}
+.modal-wzsm label input[type="radio"]::after{
+    position: absolute;
+    opacity: 0.15;
+    content: '';
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 4px;
+    left: 4px;
+    border: 2px solid #333;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.modal-wzsm label input[type="radio"]:hover::after {
+    opacity: 0.5;
+}
+
+.modal-wzsm label input[type="radio"]:checked:after {
+    opacity: 1;
+}
+
+
+
+
+
+
+.modal-wzsm td{
+    text-align: left;
+    padding:8px 0;
+}
+.modal-wzsm  .alert-error{
+    display: none;
+    font-size: 13px;
+    color:#d31a48;
+    margin:0;
+    padding: 0;
+    height: 10px;
+    line-height: 25px;
+}
+.toBlod{
+    font-size:14px!important;
+}
+
+.checkboxFive {
+    width: 25px;
+    margin: 20px 100px;
+    position: relative;
+}
+.checkboxFive label {
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    background: #eee;
+    border:1px solid #ddd;
+}
+.checkboxFive label:after {
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 6px;
+    left: 7px;
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.checkboxFive label:hover::after {
+    opacity: 0.5;
+}
+
+.checkboxFive input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
