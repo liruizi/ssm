@@ -66,13 +66,10 @@ public class ActivityViewController {
     	if(StringUtils.isEmpty(area)) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
-		
 		if(StringUtils.isEmpty(type)) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
-		
 		Activity activityInfo = activityService.findActivtyInfo(area,type);
-		System.out.println(new SuccessResponseData(JSON.toJSON(activityInfo)));
-        return new SuccessResponseData(activityInfo);
+        return new SuccessResponseData(JSON.toJSON(activityInfo));
     }
 }
