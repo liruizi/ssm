@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.business.mapper.ActivityMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+	<resultMap type="cn.stylefeng.guns.modular.business.entity.Activity" id="activityMap">
+		<result property="id" column="id" />
+		<result property="number" column="number" />
+		<result property="year" column="year" />
+		<result property="area" column="area" />
+		<result property="total" column="total" />
+		<result property="type" column="type" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+	<select id="findActivtyInfo" resultType="cn.stylefeng.guns.modular.business.entity.Activity">
+		select * from tb_activity
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+
+	</select>
+
+</mapper>
