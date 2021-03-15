@@ -46,15 +46,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         });
     };
 
-    // 弹出添加对话框
-    Position.openAddDlg = function () {
-        func.open({
-            title: '添加职位',
-            content: Feng.ctxPath + '/view/position/addView',
-            tableId: Position.tableId
-        });
-    };
-
     // 点击编辑
     Position.openEditDlg = function (data) {
         func.open({
@@ -63,45 +54,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
             tableId: Position.tableId
         });
     };
-
-    // 导出excel按钮
-    Position.exportExcel = function () {
-        var checkRows = table.checkStatus(Position.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
-    };
-
-    // 点击删除
-    Position.delete = function (data) {
-        var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/delete", 'post', function (data) {
-                Feng.success("删除成功!");
-                table.reload(Position.tableId);
-            }, function (data) {
-                Feng.error("删除失败!" + data.message + "!");
-            });
-            httpRequest.set(data);
-            httpRequest.start(true);
-        };
-        Feng.confirm("是否删除?", operation);
-    };
-
-    // 修改职位状态
-    Position.updateStatus = function (positionId, checked) {
-        var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/updateStatus", 'post', function (data) {
-            table.reload(Position.tableId);
-            Feng.success("修改成功!");
-        }, function (data) {
-            table.reload(Position.tableId);
-            Feng.error("修改失败!" + data.message);
-        });
-        httpRequest.set({"positionId": positionId, "statusFlag": checked});
-        httpRequest.start(true);
-    };
-
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Position.tableId,
@@ -117,16 +69,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
         Position.search();
-    });
-
-    // 添加按钮点击事件
-    $('#btnAdd').click(function () {
-        // Position.openAddDlg();
-    });
-
-    // 导出excel
-    $('#btnExp').click(function () {
-        Position.exportExcel();
     });
 
     // 工具条点击事件
