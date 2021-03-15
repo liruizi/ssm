@@ -21,5 +21,6 @@ public class GunsApplication {
         log.info(GunsApplication.class.getSimpleName() + " is success!");
     }
 
+    
 }
 
