@@ -4,10 +4,10 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import cn.stylefeng.guns.modular.business.entity.Activity;
+import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
 
 
-public interface ActivitMapper extends BaseMapper<Activity>  {
+public interface ActivitMapper extends BaseMapper<ActivityTotal>  {
 	
-	Activity findActivtyInfo(Map<String, Object> map);
+	ActivityTotal findActivtyInfo(Map<String, Object> map);
 }

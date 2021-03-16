@@ -28,10 +28,13 @@ function f_kg(){
                 data:{'area':area,'type':type},
                 success: function(r){
                 	if(r.code == 00000){
-                		 var d = eval("(" + r.data + ")");  // 将json字符串数据解析成对象
-                		 var area=d.area;
-                     	 alert(area);
-                         window.location.href="../pages/modular/business/activity/addType.html?area="+encodeURIComponent(area);
+                		 var jsonString = JSON.stringify(r.data);  // 将json字符串数据解析成对象
+                		 var jsObject = JSON.parse(jsonString);    //转换为json对象
+                		 var activityName=jsObject.activityName;
+                		 var activityNum=jsObject.activityNum;
+                		 var activityHost=jsObject.activityHost;
+                         window.location.href="../pages/modular/business/activity/addType.html?activityName="+ encodeURIComponent(activityName)+
+                         "&activityHost="+ encodeURIComponent(activityHost) + "&activityNum="+ encodeURIComponent(activityNum);
 					}else{
 						alert(r.msg);
 					}

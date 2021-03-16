@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.stylefeng.guns.modular.business.entity.Activity;
+import cn.stylefeng.guns.modular.business.Util.SnUtils;
+import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
+import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
@@ -50,27 +52,36 @@ public class ActivityViewController {
 	@RequestMapping("/activity/page")
 	@ResponseBody
 	public Object list(ActivityRequest activityRequest) {
-		PageResult<Activity> result = this.activityService.findPage(activityRequest);
+		PageResult<ActivityTotal> result = this.activityService.findPage(activityRequest);
 		return new SuccessResponseData(result);
 	}
-	
+
 	/**
 	 * 添加弹出层
+	 * 
 	 * @param area
 	 * @param type
 	 * @return
 	 */
-    @GetResource(name = "添加弹出层", path = "/activity/addType")
-    @ResponseBody
-    public ResponseData renderSuccess(String area,String type) {
-    	if(StringUtils.isEmpty(area)) {
+	@GetResource(name = "添加弹出层", path = "/activity/addType")
+	@ResponseBody
+	public ResponseData renderSuccess(String area, String type) {
+		if (StringUtils.isEmpty(area)) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
-		if(StringUtils.isEmpty(type)) {
+		if (StringUtils.isEmpty(type)) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
-		Activity activityInfo = activityService.findActivtyInfo(area,type);
+		ActivityTotal activityInfo = activityService.findActivtyInfo(area, type);
+
+		ActivityVo vo = new ActivityVo();
+		String activityNum = activityInfo.getArea() + "-"
+				+ activityInfo.getYear().substring(activityInfo.getYear().length() - 2) + "-"
+				+ SnUtils.getSn(activityInfo.getNumber(), 3);
+		vo.setActivityNum(activityNum);
+		vo.setActivityName(activityInfo.getArea());
+		vo.setActivityHost("东城区城市管理委员会、东城区科学技术和信息化局");
 		System.out.println(JSON.toJSON(activityInfo));
-        return new SuccessResponseData(JSON.toJSON(activityInfo));
-    }
+		return new SuccessResponseData(JSON.toJSON(vo));
+	}
 }

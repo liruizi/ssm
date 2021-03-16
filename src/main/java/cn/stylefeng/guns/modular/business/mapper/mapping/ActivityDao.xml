@@ -3,7 +3,7 @@
 <mapper namespace="cn.stylefeng.guns.modular.business.mapper.ActivityMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-	<resultMap id="activityMap" type="cn.stylefeng.guns.modular.business.entity.Activity">
+	<resultMap id="activityMap" type="cn.stylefeng.guns.modular.business.entity.ActivityTotal">
 		<result property="id" column="id" />
 		<result property="number" column="number" />
 		<result property="year" column="year" />
