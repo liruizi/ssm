@@ -18,8 +18,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("tb_activity_total")
-public class ActivityTotal extends BaseEntity {
+@TableName("tb_activity")
+public class Activity extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	//

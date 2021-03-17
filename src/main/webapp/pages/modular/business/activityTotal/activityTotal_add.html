@@ -1,0 +1,42 @@
+@layout("/layout/_form.html",{js:["/assets/modular/business/activityTotal/activityTotal_add.js"]}){
+
+<form class="layui-form" id="activityTotalForm" lay-filter="activityTotalForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+	                  <div class="layui-inline layui-col-md12">
+	                        <label class="layui-form-label layui-form-required">活动年限</label>
+	                        <div class="layui-input-block">
+	                            <input id="year" name="year" placeholder="请输入活动年限例如：2021" type="text" class="layui-input" lay-verify="required" required/>
+	                        </div>
+	                    </div>
+	                    <div class="layui-inline layui-col-md12">
+	                        <label class="layui-form-label layui-form-required">活动区域</label>
+	                        <div class="layui-input-block">
+	                            <input id="area" name="area" placeholder="请输入活动区域例如：东城区" type="text" class="layui-input" lay-verify="required" required/>
+	                        </div>
+	                    </div>
+	                    <div class="layui-inline layui-col-md12">
+	                        <label class="layui-form-label layui-form-required">编号前缀</label>
+	                        <div class="layui-input-block">
+	                            <input id="prefix" name="prefix" placeholder="请输入编号前缀例如：东城" type="text" class="layui-input" lay-verify="required" required/>
+	                        </div>
+	                    </div>
+	                     <div class="layui-inline layui-col-md12">
+	                        <label class="layui-form-label layui-form-required">活动编号</label>
+	                        <div class="layui-input-block">
+	                            <input id="number" name="number" placeholder="请输入活动编号" type="text" class="layui-input" lay-verify="required" required/>
+	                        </div>
+	                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+</form>
+@}

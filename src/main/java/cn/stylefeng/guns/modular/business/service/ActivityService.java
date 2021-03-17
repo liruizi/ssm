@@ -2,7 +2,7 @@ package cn.stylefeng.guns.modular.business.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
+import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 
@@ -13,10 +13,8 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
  * @email fei6751803@163.com
  * @date 2021-03-08 16:17:44
  */
-public interface ActivityService extends IService<ActivityTotal> {
+public interface ActivityService extends IService<Activity> {
 
-	// 通过城区查询
-	ActivityTotal findActivtyInfo(String area,String type);
 	
 	  /**
      * 获取资源分页列表
@@ -26,6 +24,6 @@ public interface ActivityService extends IService<ActivityTotal> {
      * @author fengshuonan
      * @date 2020/11/24 20:45
      */
-    PageResult<ActivityTotal> findPage(ActivityRequest activityRequest);
+    PageResult<Activity> findPage(ActivityRequest activityRequest);
 
 }

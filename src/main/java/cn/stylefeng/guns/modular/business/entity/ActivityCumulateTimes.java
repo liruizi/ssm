@@ -8,37 +8,31 @@ import cn.stylefeng.roses.kernel.db.api.pojo.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
+/***
  * 
- * @ClassName: Activity
- * @Description:TODO
+ * @ClassName:  ActivityCumulateTimes   
+ * @Description:活动累计次数
  * @author: David
- * @date: Mar 11, 2021 6:26:56 PM
+ * @date:   Mar 17, 2021 2:36:14 PM   
  *
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("tb_activity_total")
-public class ActivityTotal extends BaseEntity {
+@TableName("tb_activity_cumulate_times")
+public class ActivityCumulateTimes extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
-	//
 	@TableId(value = "id")
 	private Long id;
 
-	// 编号
-	@TableField("number")
-	private Integer number;
 	// 年
 	@TableField("year")
 	private String year;
 
-	// 城区
-	@TableField("area")
-	private String area;
 
-	// 前缀
-	@TableField("prefix")
-	private String prefix;
+	//累计次数
+	@TableField("numbers")
+	private Integer numbers;
+
 
 }

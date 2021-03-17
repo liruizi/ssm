@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 import cn.stylefeng.guns.modular.business.Util.SnUtils;
-import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
+import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
@@ -52,7 +52,7 @@ public class ActivityViewController {
 	@RequestMapping("/activity/page")
 	@ResponseBody
 	public Object list(ActivityRequest activityRequest) {
-		PageResult<ActivityTotal> result = this.activityService.findPage(activityRequest);
+		PageResult<Activity> result = this.activityService.findPage(activityRequest);
 		return new SuccessResponseData(result);
 	}
 
@@ -72,7 +72,7 @@ public class ActivityViewController {
 		if (StringUtils.isEmpty(type)) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
-		ActivityTotal activityInfo = activityService.findActivtyInfo(area, type);
+		Activity activityInfo = new Activity();
 
 		ActivityVo vo = new ActivityVo();
 		String activityNum = activityInfo.getArea() + "-"
