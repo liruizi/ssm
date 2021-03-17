@@ -41,7 +41,7 @@ public class ActivityNumServiceImpl extends ServiceImpl<ActivitNumMapper, Activi
 		ActivityNum activityNum = this.querySysActivityNumById(activityNumRequest);
 		// 逻辑删除
 //		activityNum.setDelFlag(YesOrNotEnum.Y.getCode());
-		this.updateById(activityNum);
+		this.removeById(activityNum.getId());
 	}
 
 	@Override

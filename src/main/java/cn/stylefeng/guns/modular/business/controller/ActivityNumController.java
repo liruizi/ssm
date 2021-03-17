@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.stylefeng.guns.modular.business.entity.ActivityNum;
 import cn.stylefeng.guns.modular.business.pojo.ActivityNumRequest;
 import cn.stylefeng.guns.modular.business.service.ActivityNumService;
@@ -83,6 +85,7 @@ public class ActivityNumController {
 	 * @date 2020/11/04 11:07
 	 */
 	@PostResource(name = "添加活动相关内容", path = "/activityNum/add")
+	@ResponseBody
 	public ResponseData add(@RequestBody @Validated(ActivityNumRequest.add.class) ActivityNumRequest activityNumRequest) {
 		activityNumService.add(activityNumRequest);
 		return new SuccessResponseData();
@@ -95,6 +98,7 @@ public class ActivityNumController {
 	 * @date 2020/11/04 11:07
 	 */
 	@PostResource(name = "删除活动相关内容", path = "/activityNum/delete")
+	@ResponseBody
 	public ResponseData delete(
 			@RequestBody @Validated(ActivityNumRequest.delete.class) ActivityNumRequest activityNumRequest) {
 		activityNumService.del(activityNumRequest);
@@ -108,10 +112,25 @@ public class ActivityNumController {
 	 * @date 2020/11/04 11:07
 	 */
 	@PostResource(name = "编辑活动相关内容", path = "/activityNum/edit")
+	@ResponseBody
 	public ResponseData edit(
 			@RequestBody @Validated(ActivityNumRequest.edit.class) ActivityNumRequest activityNumRequest) {
 		activityNumService.edit(activityNumRequest);
 		return new SuccessResponseData();
 	}
+	
+	 /**
+     * 查看详情
+     *
+     * @author chenjinlong
+     * @date 2020/11/04 11:07
+     */
+    @GetResource(name = "查看详情系统职位", path = "/activityNum/detail")
+    @ResponseBody
+    public ResponseData detail(@Validated(ActivityNumRequest.detail.class) ActivityNumRequest activityNumRequest) {
+    	ActivityNum detail = activityNumService.detail(activityNumRequest);
+        return new SuccessResponseData(JSON.toJSON(detail));
+    }
+
 
 }

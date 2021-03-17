@@ -43,7 +43,7 @@ public class ActivityNum extends BaseEntity {
 
 	// 编号前缀
 	@TableField("type_serial")
-	private String type_serial;
+	private String typeSerial;
 
 	// 活动主办
 	@TableField("host")

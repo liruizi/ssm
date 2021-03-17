@@ -6,6 +6,8 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     //获取信息详情填充表单
     var request = new HttpRequest(Feng.ctxPath + "/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"), 'get');
     var result = request.start();
+    alert(JSON.stringify(result));
+
     form.val('positionForm', result.data);
 
     //表单提交事件

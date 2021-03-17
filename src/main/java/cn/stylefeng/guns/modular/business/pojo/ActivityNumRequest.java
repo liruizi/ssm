@@ -16,7 +16,7 @@ public class ActivityNumRequest extends BaseRequest {
 	private static final long serialVersionUID = 1L;
 
 	@NotNull(message = "主键不能为空", groups = { edit.class, detail.class, delete.class })
-	private Integer id;
+	private Long id;
 
 	@NotBlank(message = "活动年限不能为空", groups = { add.class, edit.class })
 	private String year;
@@ -27,8 +27,10 @@ public class ActivityNumRequest extends BaseRequest {
 	@NotBlank(message = "活动类型不能为空", groups = { add.class, edit.class })
 	private String type;
 
+	private String serial;
+
 	@NotBlank(message = "活动类型编号前缀不能为空", groups = { add.class, edit.class })
-	private String type_serial;
+	private String typeSerial;
 
 	@NotBlank(message = "活动主办不能为空", groups = { add.class, edit.class })
 	private String host;

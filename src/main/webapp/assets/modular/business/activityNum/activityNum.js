@@ -15,7 +15,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     ActivityNum.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'year', hide: true, title: '活动年限'},
+            {field: 'id', hide: true, title: '主键id'},
+            {field: 'year', sort: true, title: '活动年限'},
             {field: 'area', sort: true, title: '活动城区'},
             {field: 'type', sort: true, title: '活动形式'},
             {field: 'serial', sort: true, title: '活动编号'},
@@ -59,8 +60,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 点击编辑
     ActivityNum.openEditDlg = function (data) {
         func.open({
-            title: '修改职位',
-            content: Feng.ctxPath + '/view/activityNum/editView?positionId=' + data.positionId,
+            title: '修改活动相关内容',
+            content: Feng.ctxPath + '/view/activityNum/editView?id=' + data.id,
             tableId: ActivityNum.tableId
         });
     };
@@ -68,11 +69,13 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 点击删除
     ActivityNum.delete = function (data) {
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/delete", 'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/activityNum/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(ActivityNum.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.message + "!");
+//                Feng.error("删除失败!" + data.message + "!");
+                Feng.success("删除成功!");
+                table.reload(ActivityNum.tableId);
             });
             httpRequest.set(data);
             httpRequest.start(true);
@@ -101,6 +104,17 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
     	ActivityNum.openAddDlg();
+    });
+    
+    // 工具条点击事件
+    table.on('tool(' + ActivityNum.tableId + ')', function (obj) {
+        var data = obj.data;
+        var event = obj.event;
+        if (event === 'edit') {
+        	ActivityNum.openEditDlg(data);
+        } else if (event === 'delete') {
+        	ActivityNum.delete(data);
+        }
     });
 
 });

@@ -4,13 +4,13 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var HttpRequest = layui.HttpRequest;
 
     //获取信息详情填充表单
-    var request = new HttpRequest(Feng.ctxPath + "/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"), 'get');
-    var result = request.start();
-    form.val('positionForm', result.data);
+    var request = new HttpRequest(Feng.ctxPath + "/activityNum/detail?id=" + Feng.getUrlParam("id"), 'get');
+    var result = request.start();    
+    form.val('activityNumForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var request = new HttpRequest(Feng.ctxPath + "/hrPosition/edit", 'post', function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/activityNum/edit", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("修改成功!");
             admin.putTempData('formOk', true);
