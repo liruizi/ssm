@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.stylefeng.guns.modular.business.Enum.ActivityNumEnum;
-import cn.stylefeng.guns.modular.business.entity.ActivityNum;
 import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
 import cn.stylefeng.guns.modular.business.mapper.ActivitTotalMapper;
 import cn.stylefeng.guns.modular.business.pojo.ActivityTotalRequest;
@@ -89,6 +88,12 @@ public class ActivityTotalServiceImpl extends ServiceImpl<ActivitTotalMapper, Ac
 		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getYear()), ActivityTotal::getYear,activityRequest.getYear());
 		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getArea()), ActivityTotal::getArea,activityRequest.getArea());
 		return queryWrapper;
+	}
+
+	@Override
+	public ActivityTotal findActivityTotal(String year, String area) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

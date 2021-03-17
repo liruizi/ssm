@@ -18,7 +18,6 @@ import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import cn.stylefeng.roses.kernel.system.exception.SystemModularException;
 
-
 @Service
 public class ActivityCumulateTimesServiceImpl extends ServiceImpl<ActivitCumulateTimesMapper, ActivityCumulateTimes>
 		implements ActivityCumulateTimesService {
@@ -85,8 +84,35 @@ public class ActivityCumulateTimesServiceImpl extends ServiceImpl<ActivitCumulat
 			return queryWrapper;
 		}
 
-		//年限
+		// 年限
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getYear()), ActivityCumulateTimes::getYear,
+				activityRequest.getYear());
+		return queryWrapper;
+	}
+
+	@Override
+	public ActivityCumulateTimes findTimes(String year) {
+		ActivityCumulateTimesRequest activityRequest = new ActivityCumulateTimesRequest();
+		activityRequest.setYear(year);
+		LambdaQueryWrapper<ActivityCumulateTimes> wrapper = getOneWrapper(activityRequest);
+		return this.getOne(wrapper);
+	}
+
+	/**
+	 * 创建wrapper
+	 *
+	 * @author fengshuonan
+	 * @date 2020/11/6 10:16
+	 */
+	private LambdaQueryWrapper<ActivityCumulateTimes> getOneWrapper(ActivityCumulateTimesRequest activityRequest) {
+		LambdaQueryWrapper<ActivityCumulateTimes> queryWrapper = new LambdaQueryWrapper<>();
+
+		if (ObjectUtil.isEmpty(activityRequest)) {
+			return queryWrapper;
+		}
+		// 年限
 		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getYear()), ActivityCumulateTimes::getYear,activityRequest.getYear());
+		queryWrapper.last("LIMIT 1");
 		return queryWrapper;
 	}
 

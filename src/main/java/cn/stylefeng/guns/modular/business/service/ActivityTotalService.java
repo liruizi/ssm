@@ -15,49 +15,56 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
  */
 public interface ActivityTotalService extends IService<ActivityTotal> {
 
-	
 	/**
-     * 添加
-     *
-     * @author chenjinlong
-     * @date 2020/11/04 11:07
-     */
-    void add(ActivityTotalRequest activityRequest);
+	 * 添加
+	 *
+	 * @author chenjinlong
+	 * @date 2020/11/04 11:07
+	 */
+	void add(ActivityTotalRequest activityRequest);
 
-    /**
-     * 删除
-     *
-     * @author chenjinlong
-     * @date 2020/11/04 11:07
-     */
-    void del(ActivityTotalRequest activityRequest);
+	/**
+	 * 删除
+	 *
+	 * @author chenjinlong
+	 * @date 2020/11/04 11:07
+	 */
+	void del(ActivityTotalRequest activityRequest);
 
-    /**
-     * 编辑
-     *
-     * @author chenjinlong
-     * @date 2020/11/04 11:07
-     */
-    void edit(ActivityTotalRequest activityRequest);
+	/**
+	 * 编辑
+	 *
+	 * @author chenjinlong
+	 * @date 2020/11/04 11:07
+	 */
+	void edit(ActivityTotalRequest activityRequest);
 
+	/**
+	 * 查看详情
+	 *
+	 * @param activityRequest 请求参数
+	 * @author chenjinlong
+	 * @date 2020/11/04 11:07
+	 */
+	ActivityTotal detail(ActivityTotalRequest activityRequest);
 
-    /**
-     * 查看详情
-     *
-     * @param activityRequest 请求参数
-     * @author chenjinlong
-     * @date 2020/11/04 11:07
-     */
-    ActivityTotal detail(ActivityTotalRequest activityRequest);
-	
-	  /**
-     * 获取资源分页列表
-     *
-     * @param resourceRequest 请求参数
-     * @return 返回结果
-     * @author fengshuonan
-     * @date 2020/11/24 20:45
-     */
-    PageResult<ActivityTotal> findPage(ActivityTotalRequest activityRequest);
+	/**
+	 * 获取资源分页列表
+	 *
+	 * @param resourceRequest 请求参数
+	 * @return 返回结果
+	 * @author fengshuonan
+	 * @date 2020/11/24 20:45
+	 */
+	PageResult<ActivityTotal> findPage(ActivityTotalRequest activityRequest);
+
+	/***
+	 * 通过年限和城区获得最新编号
+	 * 
+	 * @param year
+	 * @param area
+	 * @return
+	 */
+	ActivityTotal findActivityTotal(String year, String area);
 
 }

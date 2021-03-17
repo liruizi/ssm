@@ -107,4 +107,10 @@ public class ActivityNumServiceImpl extends ServiceImpl<ActivitNumMapper, Activi
 
 		return queryWrapper;
 	}
+
+	@Override
+	public ActivityNum findActivity(String year, String area, String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

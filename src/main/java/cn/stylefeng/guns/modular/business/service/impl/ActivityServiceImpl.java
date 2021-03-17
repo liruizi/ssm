@@ -1,5 +1,7 @@
 package cn.stylefeng.guns.modular.business.service.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -11,6 +13,7 @@ import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.mapper.ActivitMapper;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
+import cn.stylefeng.guns.modular.business.service.ActivityCumulateTimesService;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
 import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
@@ -27,6 +30,13 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 @Service
 public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> implements ActivityService {
 
+	
+	@Resource
+    private ActivityCumulateTimesService activityCumulateTimesService;
+
+	
+	
+	
 	@Override
 	public PageResult<Activity> findPage(ActivityRequest activityRequest) {
 		LambdaQueryWrapper<Activity> wrapper = createWrapper(activityRequest);
@@ -54,6 +64,10 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 
 	@Override
 	public ActivityVo getActivityInfo(String area, String type) {
+		
+		
+		
+		activityCumulateTimesService.findTimes("");
 		
 		return null;
 	}
