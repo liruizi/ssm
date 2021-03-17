@@ -16,8 +16,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'id', hide: true, title: '主键id'},
-            {field: 'area', sort: true, title: '活动区域'},
             {field: 'year', sort: true, title: '活动年限'},
+            {field: 'area', sort: true, title: '活动区域'},
             {field: 'prefix', sort: true, title: '活动前缀'},
             {field: 'number', sort: true, title: '活动编号'},
             {
@@ -37,8 +37,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 点击查询按钮
     ActivityTotal.search = function () {
         var queryData = {};
-        queryData['positionName'] = $("#positionName").val();
-        //queryData['positionCode'] = $("#positionCode").val();
+        queryData['area'] = $("#area").val();
+        queryData['year'] = $("#year").val();
         table.reload(ActivityTotal.tableId, {
             where: queryData,
             page: {curr: 1}

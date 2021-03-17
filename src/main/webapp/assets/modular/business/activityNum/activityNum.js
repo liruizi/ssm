@@ -19,7 +19,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
             {field: 'year', sort: true, title: '活动年限'},
             {field: 'area', sort: true, title: '活动城区'},
             {field: 'type', sort: true, title: '活动形式'},
-            {field: 'serial', sort: true, title: '活动编号'},
+            {field: 'typeSerial', sort: true, title: '编号前缀'},
+            {field: 'serial', sort: true, title: '编号后缀'},
             {field: 'host', sort: true, title: '活动主办'},
             {field: 'guide', sort: true, title: '活动协办'},
             {field: 'title', sort: true, title: '活动主题'},
@@ -40,8 +41,9 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 点击查询按钮
     ActivityNum.search = function () {
         var queryData = {};
-        queryData['positionName'] = $("#positionName").val();
-        //queryData['positionCode'] = $("#positionCode").val();
+        queryData['type'] = $("#type").val();
+        queryData['area'] = $("#area").val();
+        queryData['year'] = $("#year").val();
         table.reload(ActivityNum.tableId, {
             where: queryData,
             page: {curr: 1}

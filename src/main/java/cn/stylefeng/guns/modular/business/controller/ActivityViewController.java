@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.stylefeng.guns.modular.business.Util.SnUtils;
 import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
@@ -72,16 +71,7 @@ public class ActivityViewController {
 		if (StringUtils.isEmpty(type)) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
-		Activity activityInfo = new Activity();
-
-		ActivityVo vo = new ActivityVo();
-		String activityNum = activityInfo.getArea() + "-"
-				+ activityInfo.getYear().substring(activityInfo.getYear().length() - 2) + "-"
-				+ SnUtils.getSn(activityInfo.getNumber(), 3);
-		vo.setActivityNum(activityNum);
-		vo.setActivityName(activityInfo.getArea());
-		vo.setActivityHost("东城区城市管理委员会、东城区科学技术和信息化局");
-		System.out.println(JSON.toJSON(activityInfo));
+		ActivityVo vo = activityService.getActivityInfo(area, type);
 		return new SuccessResponseData(JSON.toJSON(vo));
 	}
 }

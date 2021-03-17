@@ -26,19 +26,19 @@ public class Activity extends BaseEntity {
 	@TableId(value = "id")
 	private Long id;
 
-	// 编号
-	@TableField("number")
-	private Integer number;
-	// 年
-	@TableField("year")
-	private String year;
+	@TableField("title")
+	private String title;
 
-	// 城区
-	@TableField("area")
-	private String area;
+	@TableField("data")
+	private String data;
 
-	// 前缀
-	@TableField("prefix")
-	private String prefix;
+	@TableField("address")
+	private String address;
+
+	@TableField("content")
+	private String content;
+
+	@TableField("object")
+	private String object;
 
 }

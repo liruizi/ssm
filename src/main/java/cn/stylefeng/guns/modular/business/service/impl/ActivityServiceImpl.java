@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.stylefeng.guns.modular.business.entity.Activity;
+import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.mapper.ActivitMapper;
 import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
@@ -25,10 +26,6 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
  */
 @Service
 public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> implements ActivityService {
-
-	
-
-	
 
 	@Override
 	public PageResult<Activity> findPage(ActivityRequest activityRequest) {
@@ -50,16 +47,14 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			return queryWrapper;
 		}
 
-		// 城区
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getArea()), Activity::getArea,
-				activityRequest.getArea());
-
-		// 根据资源名称
-//        queryWrapper.like(ObjectUtil.isNotEmpty(resourceRequest.getResourceName()), SysResource::getResourceName, resourceRequest.getResourceName());
-
-		// 根据资源url
-//        queryWrapper.like(ObjectUtil.isNotEmpty(resourceRequest.getUrl()), SysResource::getUrl, resourceRequest.getUrl());
-
+		//时间
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getData()), Activity::getData, activityRequest.getData());
 		return queryWrapper;
+	}
+
+	@Override
+	public ActivityVo getActivityInfo(String area, String type) {
+		
+		return null;
 	}
 }

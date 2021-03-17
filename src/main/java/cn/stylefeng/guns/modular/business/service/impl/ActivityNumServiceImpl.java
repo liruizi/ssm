@@ -95,8 +95,9 @@ public class ActivityNumServiceImpl extends ServiceImpl<ActivitNumMapper, Activi
 		}
 
 		// 城区
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getArea()), ActivityNum::getArea,
-				activityNumRequest.getArea());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getArea()), ActivityNum::getArea,activityNumRequest.getArea());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getYear()), ActivityNum::getYear,activityNumRequest.getYear());
+		queryWrapper.like(ObjectUtil.isNotEmpty(activityNumRequest.getType()), ActivityNum::getType,activityNumRequest.getType());
 
 		// 根据资源名称
 //        queryWrapper.like(ObjectUtil.isNotEmpty(resourceRequest.getResourceName()), SysResource::getResourceName, resourceRequest.getResourceName());

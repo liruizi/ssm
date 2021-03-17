@@ -15,17 +15,13 @@ public class ActivityRequest extends BaseRequest {
 	//
 	private Integer id;
 
-	// 编号
-	private Integer number;
-	// 年
-	private String year;
+	private String title;
 
-	// 城区
-	private String area;
+	private String data;
 
-	// 总次数
-	private Integer total;
+	private String address;
 
-	// 活动类型
-	private String type;
+	private String content;
+
+	private String object;
 }
