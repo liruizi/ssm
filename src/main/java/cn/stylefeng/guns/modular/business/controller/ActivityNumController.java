@@ -42,7 +42,6 @@ public class ActivityNumController {
 	public String indexView() {
 		return "/modular/business/activityNum/activityNum.html";
 	}
-
 	/**
 	 * 职位管理-首页-视图
 	 *
