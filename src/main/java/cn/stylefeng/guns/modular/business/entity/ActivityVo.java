@@ -18,11 +18,12 @@ public class ActivityVo implements Serializable {
 
 	// 活动名称
 	private String activityName;
-	// 活动场次
-	private String activitySession;
 
 	// 活动编号
 	private String activityNum;
+
+	// 活动类型编号
+	private String activityTypeNum;
 
 	// 活动主办单位
 	private String activityHost;
@@ -36,19 +37,10 @@ public class ActivityVo implements Serializable {
 	// 活动指导
 	private String activityGuide;
 
-	// 执行单位
-	private String executiveUnit;
 
-	// 执行地址
-	private String executiveAddress;
+	// 累计次数
+	private String cumulateTimes;
 
-	public String getActivitySession() {
-		return activitySession;
-	}
-
-	public void setActivitySession(String activitySession) {
-		this.activitySession = activitySession;
-	}
 
 	public String getActivityNum() {
 		return activityNum;
@@ -90,28 +82,28 @@ public class ActivityVo implements Serializable {
 		this.activityGuide = activityGuide;
 	}
 
-	public String getExecutiveUnit() {
-		return executiveUnit;
-	}
-
-	public void setExecutiveUnit(String executiveUnit) {
-		this.executiveUnit = executiveUnit;
-	}
-
-	public String getExecutiveAddress() {
-		return executiveAddress;
-	}
-
-	public void setExecutiveAddress(String executiveAddress) {
-		this.executiveAddress = executiveAddress;
-	}
-
 	public String getActivityName() {
 		return activityName;
 	}
 
 	public void setActivityName(String activityName) {
 		this.activityName = activityName;
+	}
+
+	public String getCumulateTimes() {
+		return cumulateTimes;
+	}
+
+	public void setCumulateTimes(String cumulateTimes) {
+		this.cumulateTimes = cumulateTimes;
+	}
+
+	public String getActivityTypeNum() {
+		return activityTypeNum;
+	}
+
+	public void setActivityTypeNum(String activityTypeNum) {
+		this.activityTypeNum = activityTypeNum;
 	}
 
 }

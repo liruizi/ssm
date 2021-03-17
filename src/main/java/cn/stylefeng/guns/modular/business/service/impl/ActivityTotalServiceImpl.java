@@ -92,8 +92,21 @@ public class ActivityTotalServiceImpl extends ServiceImpl<ActivitTotalMapper, Ac
 
 	@Override
 	public ActivityTotal findActivityTotal(String year, String area) {
-		// TODO Auto-generated method stub
-		return null;
+		ActivityTotalRequest activityRequest = new ActivityTotalRequest();
+		activityRequest.setYear(year);
+		activityRequest.setArea(area);
+		LambdaQueryWrapper<ActivityTotal> wrapper = getOneWrapper(activityRequest);
+		return this.getOne(wrapper);
+	}
+	private LambdaQueryWrapper<ActivityTotal> getOneWrapper(ActivityTotalRequest activityRequest) {
+		LambdaQueryWrapper<ActivityTotal> queryWrapper = new LambdaQueryWrapper<>();
+		if (ObjectUtil.isEmpty(activityRequest)) {
+			return queryWrapper;
+		}
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getYear()), ActivityTotal::getYear,activityRequest.getYear());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getArea()), ActivityTotal::getArea,activityRequest.getArea());
+		queryWrapper.last("LIMIT 1");
+		return queryWrapper;
 	}
 
 }

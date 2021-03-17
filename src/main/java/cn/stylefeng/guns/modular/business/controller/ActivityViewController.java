@@ -15,6 +15,7 @@ import cn.stylefeng.guns.modular.business.service.ActivityService;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
+import cn.stylefeng.roses.kernel.resource.api.annotation.PostResource;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
@@ -64,7 +65,7 @@ public class ActivityViewController {
 	 */
 	@GetResource(name = "添加弹出层", path = "/activity/addType")
 	@ResponseBody
-	public ResponseData renderSuccess(String area, String type) {
+	public ResponseData addType(String area, String type) {
 		if (StringUtils.isEmpty(area)) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
@@ -73,5 +74,22 @@ public class ActivityViewController {
 		}
 		ActivityVo vo = activityService.getActivityInfo(area, type);
 		return new SuccessResponseData(JSON.toJSON(vo));
+	}
+
+	/***
+	 * 添加我的活动
+	 * 
+	 * @param area
+	 * @param type
+	 * @return
+	 */
+	@PostResource(name = "我的活动新增", path = "/save/activity")
+	@ResponseBody
+	public ResponseData activity(String data, String title) {
+
+		Activity entity =new Activity();
+		entity.setTitle(title);
+		activityService.save(entity);
+		return new SuccessResponseData();
 	}
 }

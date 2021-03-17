@@ -32,9 +32,17 @@ function f_kg(){
                 		 var jsObject = JSON.parse(jsonString);    //转换为json对象
                 		 var activityName=jsObject.activityName;
                 		 var activityNum=jsObject.activityNum;
+                		 var activityTypeNum=jsObject.activityTypeNum;
                 		 var activityHost=jsObject.activityHost;
-                         window.location.href="../pages/modular/business/activity/addType.html?activityName="+ encodeURIComponent(activityName)+
-                         "&activityHost="+ encodeURIComponent(activityHost) + "&activityNum="+ encodeURIComponent(activityNum);
+                		 var activityTitle=jsObject.activityTitle;
+                		 var activityType=jsObject.activityType;
+                		 var activityGuide=jsObject.activityGuide;
+                		 var cumulateTimes=jsObject.cumulateTimes;
+                         window.location.href="../pages/modular/business/activity/addType.html?activityName="+ encodeURIComponent(activityName)
+                         + "&activityNum=" + encodeURIComponent(activityNum) + "&activityTypeNum=" + encodeURIComponent(activityTypeNum)
+                         + "&activityHost=" + encodeURIComponent(activityHost) + "&activityTitle=" + encodeURIComponent(activityTitle)
+                         + "&activityType=" + encodeURIComponent(activityType) + "&activityGuide=" + encodeURIComponent(activityGuide)
+                         + "&cumulateTimes=" + encodeURIComponent(cumulateTimes);
 					}else{
 						alert(r.msg);
 					}

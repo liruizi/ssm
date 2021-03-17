@@ -51,29 +51,26 @@ public class ActivityNumServiceImpl extends ServiceImpl<ActivitNumMapper, Activi
 		this.updateById(activityNum);
 	}
 
-
-
 	@Override
 	public ActivityNum detail(ActivityNumRequest activityNumRequest) {
 		return this.querySysActivityNumById(activityNumRequest);
 	}
 
 	/**
-     * 根据主键id获取对象信息
-     *
-     * @return 实体对象
-     * @author chenjinlong
-     * @date 2021/2/2 10:16
-     */
-    private ActivityNum querySysActivityNumById(ActivityNumRequest activityNumRequest) {
-    	ActivityNum activityNum = this.getById(activityNumRequest.getId());
-        if (ObjectUtil.isEmpty(activityNum)) {
-            throw new SystemModularException(ActivityNumEnum.ACTIVITY_ORG_NOT_EXIST, activityNumRequest.getId());
-        }
-        return activityNum;
-    }
-	
-	
+	 * 根据主键id获取对象信息
+	 *
+	 * @return 实体对象
+	 * @author chenjinlong
+	 * @date 2021/2/2 10:16
+	 */
+	private ActivityNum querySysActivityNumById(ActivityNumRequest activityNumRequest) {
+		ActivityNum activityNum = this.getById(activityNumRequest.getId());
+		if (ObjectUtil.isEmpty(activityNum)) {
+			throw new SystemModularException(ActivityNumEnum.ACTIVITY_ORG_NOT_EXIST, activityNumRequest.getId());
+		}
+		return activityNum;
+	}
+
 	@Override
 	public PageResult<ActivityNum> findPage(ActivityNumRequest activityNumRequest) {
 		LambdaQueryWrapper<ActivityNum> wrapper = createWrapper(activityNumRequest);
@@ -95,22 +92,40 @@ public class ActivityNumServiceImpl extends ServiceImpl<ActivitNumMapper, Activi
 		}
 
 		// 城区
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getArea()), ActivityNum::getArea,activityNumRequest.getArea());
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getYear()), ActivityNum::getYear,activityNumRequest.getYear());
-		queryWrapper.like(ObjectUtil.isNotEmpty(activityNumRequest.getType()), ActivityNum::getType,activityNumRequest.getType());
-
-		// 根据资源名称
-//        queryWrapper.like(ObjectUtil.isNotEmpty(resourceRequest.getResourceName()), SysResource::getResourceName, resourceRequest.getResourceName());
-
-		// 根据资源url
-//        queryWrapper.like(ObjectUtil.isNotEmpty(resourceRequest.getUrl()), SysResource::getUrl, resourceRequest.getUrl());
-
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getArea()), ActivityNum::getArea,
+				activityNumRequest.getArea());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getYear()), ActivityNum::getYear,
+				activityNumRequest.getYear());
+		queryWrapper.like(ObjectUtil.isNotEmpty(activityNumRequest.getType()), ActivityNum::getType,
+				activityNumRequest.getType());
 		return queryWrapper;
 	}
 
 	@Override
 	public ActivityNum findActivity(String year, String area, String type) {
-		// TODO Auto-generated method stub
-		return null;
+		ActivityNumRequest activityRequest = new ActivityNumRequest();
+		activityRequest.setYear(year);
+		activityRequest.setArea(area);
+		activityRequest.setType(type);
+		LambdaQueryWrapper<ActivityNum> wrapper = getOneWrapper(activityRequest);
+		return this.getOne(wrapper);
 	}
+
+	private LambdaQueryWrapper<ActivityNum> getOneWrapper(ActivityNumRequest activityNumRequest) {
+		LambdaQueryWrapper<ActivityNum> queryWrapper = new LambdaQueryWrapper<>();
+
+		if (ObjectUtil.isEmpty(activityNumRequest)) {
+			return queryWrapper;
+		}
+		// 城区
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getArea()), ActivityNum::getArea,
+				activityNumRequest.getArea());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getYear()), ActivityNum::getYear,
+				activityNumRequest.getYear());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityNumRequest.getType()), ActivityNum::getType,
+				activityNumRequest.getType());
+		queryWrapper.last("LIMIT 1");
+		return queryWrapper;
+	}
+
 }
