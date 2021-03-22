@@ -86,10 +86,9 @@ public class ActivityViewController {
 	@PostResource(name = "我的活动新增", path = "/save/activity")
 	@ResponseBody
 	public ResponseData activity(String data, String title) {
-
 		Activity entity =new Activity();
 		entity.setTitle(title);
 		activityService.save(entity);
-		return new SuccessResponseData();
+		return null;
 	}
 }
