@@ -34,6 +34,12 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "制表日期不能为空", groups = { add.class, edit.class })
 	private String tabulationDate;
+	
+	/**
+	 * 行政单位
+	 */
+	@NotNull(message = "行政单位不能为空", groups = { add.class, edit.class })
+	private String area;
 
 	/**
 	 * 活动编号

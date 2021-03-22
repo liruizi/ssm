@@ -16,21 +16,24 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'id', hide: true, title: '主键id'},
-            {field: 'number', sort: true, title: '活动编号'},
-            {field: 'year', sort: true, title: '活动年限'},
-            {field: 'area', sort: true, title: '活动城区'},
-            {field: 'total', sort: true, title: '总次数'},
+            {field: 'times', sort: true, title: '活动日期'},
+            {field: 'duration', sort: true, title: '活动时长'},
+            {field: 'area', sort: true, title: '行政单位'},
+            {field: 'address', sort: true, title: '活动地点'},
+            {field: 'object', sort: true, title: '活动对象'},
             {field: 'type', sort: true, title: '活动类型'},
+            {field: 'people', sort: true, title: '对接单位负责人'},
+            {field: 'contact', sort: true, title: '对接单位联系'},
+            {field: 'theNumber', sort: true, title: '参加人数'},
+            {field: 'leader', sort: true, title: '活动负责人'},
+            {field: 'vehicleSecurity', sort: true, title: '车辆保障'},
+            {field: 'driver', sort: true, title: '活动时间'},
             {
                 field: 'createTime', sort: true, title: '创建时间', templet: function (d) {
                     return util.toDateString(d.createTime);
                 }
             },
-            {
-                field: 'updateTime', sort: true, title: '更新时间', templet: function (d) {
-                    return d.updateTime == null ? '' : util.toDateString(d.updateTime);
-                }
-            },
+            
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };

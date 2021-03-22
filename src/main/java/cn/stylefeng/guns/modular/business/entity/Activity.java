@@ -39,6 +39,11 @@ public class Activity extends BaseEntity {
 	private String tabulationDate;
 
 	/**
+	 * 行政单位
+	 */
+	@TableField("行政单位不能为空")
+	private String area;
+	/**
 	 * 活动编号
 	 */
 	@TableField("number")

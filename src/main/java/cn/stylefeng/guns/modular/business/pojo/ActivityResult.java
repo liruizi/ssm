@@ -25,6 +25,10 @@ public class ActivityResult implements Serializable {
 	private Long id;
 
 	/**
+	 * 行政单位
+	 */
+	private String area;
+	/**
 	 * 制表日期
 	 */
 	private String tabulationDate;
