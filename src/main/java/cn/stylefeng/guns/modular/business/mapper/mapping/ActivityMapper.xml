@@ -9,10 +9,12 @@
 		<id column="id" property="id" />
 		<result column="tabulation_date" property="tabulationDate" />
 		<result column="number" property="number" />
+		<result column="area" property="area" />
 		<result column="type_number" property="typeNumber" />
 		<result column="organizer" property="organizer" />
 		<result column="guide" property="guide" />
 		<result column="times" property="times" />
+		<result column="hour" property="hour" />
 		<result column="address" property="address" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
@@ -30,6 +32,7 @@
 		<result column="driver" property="driver" />
 		<result column="invite_media" property="inviteMedia" />
 		<result column="executive_unit" property="executiveUnit" />
+		<result column="basic" property="basic" />
 		<result column="laptop" property="laptop" />
 		<result column="props" property="props" />
 		<result column="background" property="background" />

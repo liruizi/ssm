@@ -38,7 +38,6 @@ public class ActivityParam extends BaseRequest {
 	/**
 	 * 行政单位
 	 */
-	@NotNull(message = "行政单位不能为空", groups = { add.class, edit.class })
 	private String area;
 
 	/**
@@ -70,6 +69,12 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "活动时间不能为空", groups = { add.class, edit.class })
 	private String times;
+	
+	/**
+	 * 活动时间
+	 */
+	@NotNull(message = "活动时间不能为空", groups = { add.class, edit.class })
+	private String hour;
 
 	/**
 	 * 活动地点

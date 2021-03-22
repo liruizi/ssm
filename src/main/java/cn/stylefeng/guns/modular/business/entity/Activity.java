@@ -1,7 +1,5 @@
 package cn.stylefeng.guns.modular.business.entity;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -41,7 +39,7 @@ public class Activity extends BaseEntity {
 	/**
 	 * 行政单位
 	 */
-	@TableField("行政单位不能为空")
+	@TableField("area")
 	private String area;
 	/**
 	 * 活动编号
@@ -71,7 +69,12 @@ public class Activity extends BaseEntity {
 	 * 活动时间
 	 */
 	@TableField("times")
-	private Date times;
+	private String times;
+	/**
+	 * 活动时间
+	 */
+	@TableField("hour")
+	private String hour;
 
 	/**
 	 * 活动地点

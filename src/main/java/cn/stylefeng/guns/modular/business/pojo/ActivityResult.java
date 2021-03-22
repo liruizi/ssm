@@ -57,6 +57,10 @@ public class ActivityResult implements Serializable {
 	 * 活动时间
 	 */
 	private String times;
+	/**
+	 * 活动时间
+	 */
+	private String hour;
 
 	/**
 	 * 活动地点
@@ -277,5 +281,16 @@ public class ActivityResult implements Serializable {
 	 * 更新人
 	 */
 	private Long updateUser;
+	
+	
+	 /**
+     * 开始时间
+     */
+    private String beginTime;
+
+    /**
+     * 结束时间
+     */
+    private String endTime;
 
 }
