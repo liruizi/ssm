@@ -5,11 +5,13 @@ import java.util.Calendar;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.stylefeng.guns.modular.business.Enum.ActivityNumEnum;
 import cn.stylefeng.guns.modular.business.Util.SnUtils;
@@ -19,7 +21,8 @@ import cn.stylefeng.guns.modular.business.entity.ActivityNum;
 import cn.stylefeng.guns.modular.business.entity.ActivityTotal;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.mapper.ActivitMapper;
-import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
+import cn.stylefeng.guns.modular.business.pojo.ActivityParam;
+import cn.stylefeng.guns.modular.business.pojo.ActivityResult;
 import cn.stylefeng.guns.modular.business.service.ActivityCumulateTimesService;
 import cn.stylefeng.guns.modular.business.service.ActivityNumService;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
@@ -50,8 +53,8 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	private ActivityNumService activityNumService;
 
 	@Override
-	public PageResult<Activity> findPage(ActivityRequest activityRequest) {
-		LambdaQueryWrapper<Activity> wrapper = createWrapper(activityRequest);
+	public PageResult<Activity> findPage(ActivityResult activityResult) {
+		LambdaQueryWrapper<Activity> wrapper = createWrapper(activityResult);
 		Page<Activity> page = this.page(PageFactory.defaultPage(), wrapper);
 		return PageResultFactory.createPageResult(page);
 	}
@@ -62,14 +65,15 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	 * @author fengshuonan
 	 * @date 2020/11/6 10:16
 	 */
-	private LambdaQueryWrapper<Activity> createWrapper(ActivityRequest activityRequest) {
+	private LambdaQueryWrapper<Activity> createWrapper(ActivityResult activityResult) {
 		LambdaQueryWrapper<Activity> queryWrapper = new LambdaQueryWrapper<>();
 
-		if (ObjectUtil.isEmpty(activityRequest)) {
+		if (ObjectUtil.isEmpty(activityResult)) {
 			return queryWrapper;
 		}
 		// 时间
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityRequest.getData()), Activity::getData, activityRequest.getData());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getAddress()), Activity::getAddress,
+				activityResult.getAddress());
 		return queryWrapper;
 	}
 
@@ -123,5 +127,43 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		activityTotalService.updateById(activityTotal);
 
 		return vo;
+	}
+
+	@Override
+	public void add(ActivityParam activityParam) {
+
+		String centent = "";
+		if (!StringUtils.isEmpty(activityParam.getContent_o())) {
+			centent += activityParam.getContent_o() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getContent_t())) {
+			centent += activityParam.getContent_t() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getContent_s())) {
+			centent += activityParam.getContent_s() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getContent_f())) {
+			centent += activityParam.getContent_f();
+		}
+		String object = "";
+		if (!StringUtils.isEmpty(activityParam.getObject_o())) {
+			object += activityParam.getObject_o() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getObject_t())) {
+			object += activityParam.getObject_t() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getObject_s())) {
+			object += activityParam.getObject_s() + ",";
+		}
+		if (!StringUtils.isEmpty(activityParam.getObject_f())) {
+			object += activityParam.getObject_f();
+		}
+
+		activityParam.setContent(centent);
+		activityParam.setObject(object);
+		// 将dto转为实体
+		Activity activity = new Activity();
+		BeanUtil.copyProperties(activityParam, activity);
+		this.save(activity);
 	}
 }

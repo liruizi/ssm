@@ -24,21 +24,23 @@
                     if(name == "activityName"){
                         document.getElementById("areaName").innerText = decodeURIComponent(values);//活动名称
                         document.getElementById("areaName1").innerText = decodeURIComponent(values);//活动名称
-                        document.getElementById("area").value = decodeURIComponent(values);//活动名称
                     }else if(name == "activityNum"){
-                        document.getElementById("activityNum").innerText = decodeURIComponent(values);//活动编号
+                        document.getElementById("numberSpan").innerText = decodeURIComponent(values);//活动编号
+                        document.getElementById("number").value = decodeURIComponent(values);//活动编号
                     }else if(name == "activityTypeNum"){
-                        document.getElementById("activityTypeNum").innerText = decodeURIComponent(values);//类型编号
+                        document.getElementById("typeNumberSpan").innerText = decodeURIComponent(values);//类型编号
+                        document.getElementById("typeNumber").value = decodeURIComponent(values);//活动编号
+
                     }else if(name == "activityHost"){
-                        document.getElementById("activityHost").value = decodeURIComponent(values);//活动主办
+                        document.getElementById("organizer").value = decodeURIComponent(values);//活动主办
                     }else if(name == "activityGuide"){
                         document.getElementById("guide").value = decodeURIComponent(values);//指导协办
                     }else if(name == "activityTitle"){
                         document.getElementById("title").value = decodeURIComponent(values);//活动主题
                     }else if(name == "activityType"){
-                        document.getElementById("activityType").value = decodeURIComponent(values);//活动类型
+                        document.getElementById("type").value = decodeURIComponent(values);//活动类型
                     }else if(name == "cumulateTimes"){
-                        document.getElementById("cumulateTimes").value = decodeURIComponent(values);// 给指定id赋参数值
+                        document.getElementById("sessions").value = decodeURIComponent(values);//活动场次
                     }
                 }
             }
@@ -58,21 +60,49 @@
             isinitVal:true
         })
     };
-    function submits() {
-        $.ajax({
-            type:"POST",
-            url:"../../../../save/activity",
-            data:decodeURIComponent($('#myForm').serialize()),
-            success:function(data) {
-            	if(data.code == 00000){
-           			alert("添加成功!");
-                    window.location.href="../../../../view/activity";
-				}else{
-					alert(r.msg);
-				}
-            }
-        })
-    }
+    
+
+    $(function(){		
+		//将form表单转换为json数据
+		$.fn.serializeJson=function(){  
+            var serializeObj={};  
+            var array=this.serializeArray(); //将form表单序列化数组对象 
+            var str=this.serialize();  //将form表单序列化字符串
+            $(array).each(function(){  //遍历表单数组拼接json串
+                if(serializeObj[this.name]){   
+                    if($.isArray(serializeObj[this.name])){  
+                        serializeObj[this.name].push(this.value);  
+                    }else{  
+                        serializeObj[this.name]=[serializeObj[this.name],this.value];
+                    }  
+                }else{  
+                    serializeObj[this.name]=this.value;   
+                }  
+            });  
+            return serializeObj;  
+        };
+ 		
+     	// 点击查询按钮，将form数据转换为json 绑定datagrid 
+     	$("#button").click(function(){
+			// 转换form对象 到 json,发送请求
+			var params = $("#myForm").serializeJson();
+			$.ajax({
+	            type:"POST",
+	            dataType: "json",
+	            url:"../../../../activity/add",
+	            data:JSON.stringify(params),
+	            contentType:"application/json",
+	            success:function(data) {
+	            	if(data.code == 00000){
+	           			alert("添加成功!");
+	                    window.location.href="../../../../view/activity";
+					}else{
+						alert(r.msg);
+					}
+	            }
+	        })
+     	});
+    })
 </script>
 
 <body>
@@ -85,30 +115,32 @@
             <form method="get" id="myForm" action="">
                 <div class="card-body">
                     <div class="book_con01">
-                    	<input type="text" name="area" id="area"/>
+                     	<input type="hidden" name="area" id="area"/>
+                     	<input type="hidden" name="number" id="number"/>
+                     	<input type="hidden" name="typeNumber" id="typeNumber"/>
                         <h1 class="book_h01">北京市<i style="font-style:normal;font-size:20px" id="areaName"></i>垃圾分类宣传培训活动任务单</h1>
                         <p class="book_p" style="padding-bottom: 13px;margin-top:-3px;">
-                            <span class="book_titSpan" style="float:left"><label>活动编号:<i style="font-style:normal" id="activityNum"></i></label></span>
-                            <span class="book_titSpan"><label>类型编号:<i style="font-style:normal" id="activityTypeNum"></i></label></span>
+                            <span class="book_titSpan" style="float:left"><label>活动编号:<i style="font-style:normal" id="numberSpan"></i></label></span>
+                            <span class="book_titSpan"><label>类型编号:<i style="font-style:normal" id="typeNumberSpan"></i></label></span>
                         </p>
                         <table class="book_table" border="1" cellpadding="10">
                             <tr>
                                 <th>
                                     <label class="td_label">活动主办</label>
                                 </th>
-                                <td colspan="5"><input type="text" class="book_input03" id="activityHost" name="activityHost" rdisabled="disabled"/></td>
+                                <td colspan="5"><input type="text" class="book_input03" id="organizer" name="organizer" rdisabled="disabled"/></td>
                             </tr>
                             <tr>
                                 <th>
                                     <label class="td_label">指导协办</label>
                                 </th>
-                                <td colspan="5"><input type="text" class="book_input03" name ="name" id="guide" name="guide"  rdisabled="disabled"/></td>
+                                <td colspan="5"><input type="text" class="book_input03" id="guide" name="guide"  rdisabled="disabled"/></td>
                             </tr>
                             <tr>
                                 <th>
                                     <label class="td_label">活动时间</label>
                                 </th>
-                                <td colspan="5"><input type="text" class="book_input03 times" class="book_input03" name ="data" id="data"/></td>
+                                <td colspan="5"><input type="text" class="book_input03 times" class="book_input03" name ="times" id="times"/></td>
                             </tr>
                             <tr>
                                 <th>
@@ -134,20 +166,20 @@
                             <tr>
                                 <th><label class="td_label">活动对象</label></th>
                                 <td colspan="5">
-                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="object"/></label>
-                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="object"/></label>
-                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="object"/></label>
-                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="object"/></label>
+                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="object_o"/></label>
+                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="object_t"/></label>
+                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="object_s"/></label>
+                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="object_f"/></label>
                                 </td>
                             </tr>
                             <tr>
                                 <th width="75px"><label class="td_label">活动类型</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03" id="activityType" name="activityType" rdisabled="disabled" />
+                                    <input type="text" class="book_input03" id="type" name="type"/>
                                 </td>
                                 <th width="75px"><label class="td_label">活动场次</label></th>
                                 <td colspan="2">
-                                    累计<input type="text" class="book_input03" style="width:50%" id="cumulateTimes" name="cumulateTimes" rdisabled="disabled"/>场次
+                                    累计<input type="text" class="book_input03" style="width:50%" id="sessions" name="sessions"/>场次
                                 </td>
                             </tr>
                             <tr>
@@ -156,13 +188,13 @@
                                     <table border="0">
                                         <tr style="border:0">
                                             <td>对接单位：</td>
-                                            <td colspan="3"><input type="text" class="book_input03" style="width:96%;text-align: left;"/></td>
+                                            <td colspan="3"><input type="text" class="book_input03" id="unit" name="unit" style="width:96%;text-align: left;"/></td>
                                         </tr>
                                         <tr style="border:0">
                                             <td>对接人员：</td>
-                                            <td><input type="text" class="book_input03" style="width:90%;text-align: left;padding-left:2px;"/></td>
+                                            <td><input type="text" class="book_input03" id="people" name="people" style="width:90%;text-align: left;padding-left:2px;"/></td>
                                             <td>联系方式</td>
-                                            <td><input type="text" class="book_input03" style="width:90%;text-align: left;padding-left:2px;"/></td>
+                                            <td><input type="text" class="book_input03" id="contact" name="contact" style="width:90%;text-align: left;padding-left:2px;"/></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -170,36 +202,36 @@
                             <tr>
                                 <th><label class="td_label">活动联系</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="activityContact" name="activityContact"/>
                                 </td>
                                 <th><label class="td_label">活动确认</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="activityConfir" name="activityConfir"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">活动负责</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="activityResp" name="activityResp"/>
                                 </td>
                                 <th><label class="td_label">服务人员</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="servicePersonnel" name="servicePersonnel"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">车辆保障</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="vehicleSecurity" name="vehicleSecurity"/>
                                 </td>
                                 <th><label class="td_label">司机</label></th>
                                 <td colspan="2">
-                                    <input type="text" class="book_input03"/>
+                                    <input type="text" class="book_input03" id="driver" name="driver"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">邀请媒体</label></th>
-                                <td colspan="5" ><input type="text" class="book_input03" /></td>
+                                <td colspan="5" ><input type="text" class="book_input03"  id="inviteMedia" name="inviteMedia"/></td>
                             </tr>
                         </table>
                         <table class="book_table" border="1" cellpadding="10" style="border-top:0;">
@@ -207,7 +239,7 @@
                                 <th rowspan="3" width="35px" style="border-top:0;padding:0 10px;"><label class="td_label">活<br />动<br />执<br />行<br />单<br />位</label></th>
                                 <th width="75px" style="border-top:0;"><label class="td_label">执行单位</label></th>
                                 <td colspan="4" style="border-top:0;">
-                                    <input type="text" class="book_input03" value="北京中环绿都文化发展有限公司"/>
+                                    <input type="text" class="book_input03" id="executiveUnit" name="executiveUnit"  value="北京中环绿都文化发展有限公司"/>
                                 </td>
                             </tr>
                             <tr>
@@ -225,13 +257,13 @@
                     </div>
                     <div class="book_con02">
                         <h1 class="book_h01">北京市<i style="font-style:normal;font-size:20px" id="areaName1"></i>垃圾分类宣传培训活动确认单</h1>
-                        <p class="book_p"><span class="book_titSpan" style="margin-top:-12px;">制表日期：<input type="text" class="book_input01 dates" style="width: 75px;"/></span></p>
+                        <p class="book_p"><span class="book_titSpan" style="margin-top:-12px;">制表日期：<input type="text" class="book_input01 dates" style="width: 75px;" id="tabulationDate" name="tabulationDate"/></span></p>
                         <table class="book_table" border="1" cellpadding="10">
                             <tr>
                                 <th>
                                     <label class="td_label">基本概况</label>
                                 </th>
-                                <td colspan="5"><input type="text" class="book_input03" name ="name" minlength="2"  required /></td>
+                                <td colspan="5"><input type="text" class="book_input03" name ="name"/></td>
                             </tr>
                             <tr>
                                 <th rowspan="6" width="75px"><label class="td_label">物资配备</label></th>
@@ -242,74 +274,80 @@
                             </tr>
                             <tr>
                                 <th><label class="td_label">笔记本电脑</label></th>
-                                <td><input type="text" class="book_input03" name ="computer" value="1" /></td>
+                                <td><input type="text" class="book_input03" value="1" id="laptop" name="laptop"/></td>
                                 <th><label class="td_label">活动道具</label></th>
-                                <td><input type="text" class="book_input03" name ="prop" value="50" /></td>
+                                <td><input type="text" class="book_input03"  value="50" id="props" name="props"/></td>
                             </tr>
                              <tr>
                                 <th><label class="td_label">活动背景</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/" /></td>
+                                <td><input type="text" class="book_input03"  value="/" id="background" name="background"/></td>
                                 <th><label class="td_label">宣传展览</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/" /></td>
+                                <td><input type="text" class="book_input03"  value="/" id="propagandaExhibition" name="propagandaExhibition"/></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">音响器材</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/"/></td>
+                                <td><input type="text" class="book_input03"  value="/" id="audio" name="audio"/></td>
                                 <th><label class="td_label">摄录器材</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="1" /></td>
+                                <td><input type="text" class="book_input03"  value="1" id="videoRecording" name="videoRecording" /></td>
                             </tr>
                             
                             <tr>
                                 <th><label class="td_label">急救器材</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/" /></td>
+                                <td><input type="text" class="book_input03"  value="/" id="firstAid" name="firstAid"/></td>
                                 <th><label class="td_label">宣传资料</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/" /></td>
+                                <td><input type="text" class="book_input03"  value="/" id="propaganda" name="propaganda"/></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">图书绘本</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="/" /></td>
+                                <td><input type="text" class="book_input03"  value="/" id="bookPicture" name="bookPicture"/></td>
                                 <th><label class="td_label">活动赠品</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="20" /></td>
+                                <td><input type="text" class="book_input03"  value="20" id="gifts" name="gifts"/></td>
                             </tr>
                             <tr>
                                 <th rowspan="3"><label class="td_label">活动执行</label></th>
                                 <th>出发时间</th>
-                                <td><input type="text" class="book_input03" name ="name" value="" /></td>
+                                <td><input type="text" class="book_input03" value="" id="departureTime" name="departureTime"/></td>
                                 <th>活动时长</th>
-                                <td><input type="text" class="book_input03" name ="name" value="" /></td>
+                                <td><input type="text" class="book_input03" value="" id="duration" name="duration"/></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">照片数量</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="" /></td>
+                                <td><input type="text" class="book_input03"  value="" id="pictureNum" name="pictureNum"/></td>
                                 <th><label class="td_label">视频资料</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value="" /></td>
+                                <td><input type="text" class="book_input03"  value="" id="videoMaterial" name="videoMaterial"/></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">信息采集</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value=""/></td>
+                                <td><input type="text" class="book_input03"  value="" id="information" name="information"/></td>
                                 <th><label class="td_label">物品维护</label></th>
-                                <td><input type="text" class="book_input03" name ="name" value=""/></td>
+                                <td><input type="text" class="book_input03"  value="" id="item" name="item"/></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">典型案例</label></th>
-                                <td colspan="5" > <textarea  class="textArae" id="" style="height:100px;border:0px"></textarea></td>
+                                <td colspan="5" > <textarea  class="textArae" id="" style="height:100px;border:0px" id="cases" name="cases"></textarea></td>
                             </tr>
                             <tr>
                                 <th><label class="td_label">问题与建议</label></th>
-                                <td colspan="5" > <input type="text" class="book_input03" name ="name" minlength="2"  required /></td>
+                                <td colspan="5" > <input type="text" class="book_input03" id="questions" name="questions"/></td>
                             </tr>
                         </table>
-                        <table class="book_table" border="1" cellpadding="10" style="border-top:0;">
+                         <table class="book_table" border="1" cellpadding="10" style="border-top:0;">
                             <tr style="border-top:0px;">
                                 <th width="35px" rowspan="2" style="border-top:0px;"><label class="td_label">活<br />动<br />确<br />认<br />单<br />位</label></th>
-                                <th style="text-align: left;border-top:0;"><span style="margin-right:100px;">参加人数：</span><span>人员类型：</span></th>
+                                <th style="text-align: left;border-top:0;">
+                                    <span>参加人数：</span>
+                                    <input type="text" class="book_input03" style="width: calc(48% - 70px);text-align: left;" id="theNumber" name="theNumber" />
+                                    <span>人员类型：</span> 
+                                    <input type="text" class="book_input03" style="width: calc(48% - 70px);text-align: left;" id="personType" name="personType"/>
+                                </th>
                             </tr>
                             <tr>
                                 <th style="text-align:left;padding:11px 6px;" colspan="2">
-                                    <p style="margin-bottom:30px;">完成情况：</p>
+                                    <p style="margin-bottom:7px;">完成情况：<input type="text" class="book_input03" style="width: calc(96% - 70px);text-align: left;" id="completion" name="completion" /></p>
                                     <p>
-                                        <span style="padding-right:100px;">活动确认单位（盖章）：</span>
+                                        <span style="padding-right:90px;">活动确认单位（盖章）：</span>
                                         <span>活动负责人：</span>
+                                        <input type="text" class="book_input03" style="width: calc(100% - 310px);text-align: left;" id="leader" name="leader"/>
                                     </p>
                                 </th>
                             </tr>
@@ -321,7 +359,7 @@
     </div>    
     <div style="text-align:center;margin:-45px 0 30px 0;" >  
 	    <div class="form-group-bottom text-center">
-	        <button class="layui-btn" onclick="submits();">&emsp;提交&emsp;</button>
+	        <button class="layui-btn" id="button">&emsp;提交&emsp;</button>
 	        <button type="reset" class="layui-btn layui-btn-primary" >&emsp;取消&emsp;</button>
 	    </div>
     </div>

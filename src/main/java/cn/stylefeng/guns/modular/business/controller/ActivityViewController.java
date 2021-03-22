@@ -3,6 +3,7 @@ package cn.stylefeng.guns.modular.business.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -10,7 +11,8 @@ import com.alibaba.fastjson.JSON;
 
 import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
-import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
+import cn.stylefeng.guns.modular.business.pojo.ActivityParam;
+import cn.stylefeng.guns.modular.business.pojo.ActivityResult;
 import cn.stylefeng.guns.modular.business.service.ActivityService;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
@@ -51,8 +53,8 @@ public class ActivityViewController {
 	 */
 	@RequestMapping("/activity/page")
 	@ResponseBody
-	public Object list(ActivityRequest activityRequest) {
-		PageResult<Activity> result = this.activityService.findPage(activityRequest);
+	public ResponseData list(ActivityResult activityResult) {
+		PageResult<Activity> result = this.activityService.findPage(activityResult);
 		return new SuccessResponseData(result);
 	}
 
@@ -76,19 +78,17 @@ public class ActivityViewController {
 		return new SuccessResponseData(JSON.toJSON(vo));
 	}
 
-	/***
-	 * 添加我的活动
-	 * 
-	 * @param area
-	 * @param type
-	 * @return
+	/**
+	 * 添加tb_activity
+	 *
+	 * @author fengshuonan
+	 * @date 2021/03/22 14:07
 	 */
-	@PostResource(name = "我的活动新增", path = "/save/activity")
+	@PostResource(name = "我的活动新增", path = "/activity/add")
 	@ResponseBody
-	public ResponseData activity(String data, String title) {
-		Activity entity =new Activity();
-		entity.setTitle(title);
-		activityService.save(entity);
-		return null;
+	public ResponseData add(@RequestBody ActivityParam activityParam) {
+		activityService.add(activityParam);
+		return new SuccessResponseData();
 	}
+
 }

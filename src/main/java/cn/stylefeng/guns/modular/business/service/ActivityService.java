@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
-import cn.stylefeng.guns.modular.business.pojo.ActivityRequest;
+import cn.stylefeng.guns.modular.business.pojo.ActivityParam;
+import cn.stylefeng.guns.modular.business.pojo.ActivityResult;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 
 /**
@@ -26,6 +27,14 @@ public interface ActivityService extends IService<Activity> {
      * @author fengshuonan
      * @date 2020/11/24 20:45
      */
-    PageResult<Activity> findPage(ActivityRequest activityRequest);
+    PageResult<Activity> findPage(ActivityResult activityResult);
+    
+    /**
+     * 添加tb_activity
+     *
+     * @author fengshuonan
+     * @date 2021/03/22 14:07
+     */
+    void add(ActivityParam activityParam);
 
 }
