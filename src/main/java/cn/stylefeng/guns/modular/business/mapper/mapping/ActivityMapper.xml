@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stylefeng.guns.modular.business.mapper.ActivityMapper">
+
+  
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.business.entity.Activity">
+		<id column="id" property="id" />
+		<result column="tabulation_date" property="tabulationDate" />
+		<result column="number" property="number" />
+		<result column="type_number" property="typeNumber" />
+		<result column="organizer" property="organizer" />
+		<result column="guide" property="guide" />
+		<result column="times" property="times" />
+		<result column="address" property="address" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="object" property="object" />
+		<result column="type" property="type" />
+		<result column="sessions" property="sessions" />
+		<result column="unit" property="unit" />
+		<result column="people" property="people" />
+		<result column="contact" property="contact" />
+		<result column="activity_contact" property="activityContact" />
+		<result column="activity_confir" property="activityConfir" />
+		<result column="activity_resp" property="activityResp" />
+		<result column="service_personnel" property="servicePersonnel" />
+		<result column="vehicle_security" property="vehicleSecurity" />
+		<result column="driver" property="driver" />
+		<result column="invite_media" property="inviteMedia" />
+		<result column="executive_unit" property="executiveUnit" />
+		<result column="laptop" property="laptop" />
+		<result column="props" property="props" />
+		<result column="background" property="background" />
+		<result column="propaganda_exhibition" property="propagandaExhibition" />
+		<result column="audio" property="audio" />
+		<result column="video_recording" property="videoRecording" />
+		<result column="first_aid" property="firstAid" />
+		<result column="propaganda" property="propaganda" />
+		<result column="book_picture" property="bookPicture" />
+		<result column="gifts" property="gifts" />
+		<result column="departure_time" property="departureTime" />
+		<result column="duration" property="duration" />
+		<result column="picture_num" property="pictureNum" />
+		<result column="video_material" property="videoMaterial" />
+		<result column="information" property="information" />
+		<result column="item" property="item" />
+		<result column="cases" property="cases" />
+		<result column="questions" property="questions" />
+		<result column="the_number" property="theNumber" />
+		<result column="person_type" property="personType" />
+		<result column="completion" property="completion" />
+		<result column="leader" property="leader" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_user" property="createUser" />
+		<result column="update_user" property="updateUser" />
+	</resultMap>
+
+</mapper>
