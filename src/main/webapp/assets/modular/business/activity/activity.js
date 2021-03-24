@@ -85,7 +85,6 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
     $('#btnSearch').click(function () {
         Position.search();
     });
-
     // 工具条点击事件
     table.on('tool(' + Position.tableId + ')', function (obj) {
         var data = obj.data;
