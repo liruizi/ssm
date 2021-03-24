@@ -81,10 +81,24 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
         parseData: Feng.parseData
     });
 
+    // 导出excel按钮
+    Position.exportExcel = function () {
+        var checkRows = table.checkStatus(Position.tableId);
+        if (checkRows.data.length === 0) {
+            Feng.error("请选择要导出的数据");
+        } else {
+            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
+        }
+    };
     
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
         Position.search();
+    });
+    
+    // 导出excel
+    $('#btnExp').click(function () {
+        Position.exportExcel();
     });
     // 工具条点击事件
     table.on('tool(' + Position.tableId + ')', function (obj) {
