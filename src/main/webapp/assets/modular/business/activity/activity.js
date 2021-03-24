@@ -81,6 +81,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
         parseData: Feng.parseData
     });
 
+    
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
         Position.search();
