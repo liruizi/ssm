@@ -73,18 +73,23 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			return queryWrapper;
 		}
 		// 行政单位
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getArea()), Activity::getArea,activityResult.getArea());
-		//活动方式
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getType()), Activity::getType,activityResult.getType());
-		//活动时长
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getDuration()), Activity::getDuration,activityResult.getDuration());
-		//活动负责人
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getLeader()), Activity::getLeader,activityResult.getLeader());
-		//活动司机
-		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getDriver()), Activity::getDriver,activityResult.getDriver());
-		//活动时间
-		queryWrapper.ge(StrUtil.isNotBlank(activityResult.getBeginTime()), Activity::getTimes, activityResult.getBeginTime());
-        queryWrapper.le(StrUtil.isNotBlank(activityResult.getEndTime()), Activity::getTimes, activityResult.getEndTime());
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getArea()), Activity::getArea, activityResult.getArea());
+		// 活动方式
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getType()), Activity::getType, activityResult.getType());
+		// 活动时长
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getDuration()), Activity::getDuration,
+				activityResult.getDuration());
+		// 活动负责人
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getLeader()), Activity::getLeader,
+				activityResult.getLeader());
+		// 活动司机
+		queryWrapper.eq(ObjectUtil.isNotEmpty(activityResult.getDriver()), Activity::getDriver,
+				activityResult.getDriver());
+		// 活动时间
+		queryWrapper.ge(StrUtil.isNotBlank(activityResult.getBeginTime()), Activity::getTimes,
+				activityResult.getBeginTime());
+		queryWrapper.le(StrUtil.isNotBlank(activityResult.getEndTime()), Activity::getTimes,
+				activityResult.getEndTime());
 
 		return queryWrapper;
 	}
@@ -171,12 +176,10 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			object += activityParam.getObject_f();
 		}
 
-		
-		
-	    String str=activityParam.getTimes();
-	    String[] arr=str.split("\\s+");
-	    activityParam.setHour(arr[1]);
-	    activityParam.setTimes(arr[0]);
+		String str = activityParam.getTimes();
+		String[] arr = str.split("\\s+");
+		activityParam.setHour(arr[1]);
+		activityParam.setTimes(arr[0]);
 		activityParam.setContent(centent);
 		activityParam.setObject(object);
 		// 将dto转为实体
@@ -184,11 +187,22 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		BeanUtil.copyProperties(activityParam, activity);
 		this.save(activity);
 	}
-	
-	public static void main(String[] args) {
-		String str="2021年03月22日 15:45";
-		String[] arr=str.split("\\s+");
-		System.err.println(arr[1]);
+
+	@Override
+	public Activity detail(ActivityParam activityParam) {
+		return this.queryActivity(activityParam);
 	}
-	
+
+	/**
+	 * 获取tb_activity
+	 *
+	 * @author fengshuonan
+	 * @since 2021/03/22 14:07
+	 */
+	private Activity queryActivity(ActivityParam activityParam) {
+		Activity activity = this.getById(activityParam.getId());
+
+		return activity;
+	}
+
 }

@@ -3,6 +3,7 @@ package cn.stylefeng.guns.modular.business.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -89,6 +90,23 @@ public class ActivityViewController {
 	public ResponseData add(@RequestBody ActivityParam activityParam) {
 		activityService.add(activityParam);
 		return new SuccessResponseData();
+	}
+
+	/**
+	 * 业务日志详情-视图
+	 *
+	 * @author chenjinlong
+	 * @date 2021/1/13 19:45
+	 */
+	@GetResource(name = "我的活动详情-视图", path = "/view/activity/detailView")
+	public String detailView() {
+		return "/modular/business/activity/activity_detail.html";
+	}
+
+	@GetResource(name = "我的活动详情-视图", path = "/activityManager/detail")
+	@ResponseBody
+	public ResponseData detail(@Validated(ActivityParam.detail.class) ActivityParam activityParam) {
+		return new SuccessResponseData(activityService.detail(activityParam));
 	}
 
 }

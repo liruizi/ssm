@@ -29,7 +29,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             {field: 'leader',  title: '活动负责人'},
             {field: 'vehicleSecurity',  title: '车辆保障'},
             {field: 'driver',title: '活动司机'},
-            
+            {align: 'center', toolbar: '#tableBar', title: '操作', width: 70}
         ]];
     };
 
@@ -81,6 +81,15 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
         parseData: Feng.parseData
     });
 
+    // 点击详情
+    Position.openDetailDlg = function (data) {
+        func.open({
+            title: '我的活动详情',
+            content: Feng.ctxPath + '/view/activity/detailView?id=' + data.id,
+            tableId: Position.tableId
+        });
+    };
+    
     // 导出excel按钮
     Position.exportExcel = function () {
         var checkRows = table.checkStatus(Position.tableId);
@@ -108,6 +117,8 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             Position.openEditDlg(data);
         } else if (event === 'delete') {
             Position.delete(data);
+        } else if (event === 'detail') {
+        	Position.openDetailDlg(data);
         }
     });
 });
