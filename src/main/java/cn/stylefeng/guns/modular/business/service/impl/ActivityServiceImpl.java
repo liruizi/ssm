@@ -101,32 +101,32 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 
 		Calendar rightNow = Calendar.getInstance();
 		Integer year = rightNow.get(Calendar.YEAR);
-		vo.setActivityType(type);
-		vo.setActivityName(area);
+		vo.setType(type);
+		vo.setArea(area);
 
 		// 活动累计次数
 		ActivityCumulateTimes findTimes = activityCumulateTimesService.findTimes(year.toString());
 		if (ObjectUtil.isEmpty(findTimes)) {
 			throw new SystemModularException(ActivityNumEnum.TIMES_NOT_EXIST, area);
 		}
-		vo.setCumulateTimes(findTimes.getNumbers().toString());
+		vo.setSessions(findTimes.getNumbers().toString());
 
 		// 活动编号相关
 		ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
 		if (ObjectUtil.isEmpty(findActivityTotal)) {
 			throw new SystemModularException(ActivityNumEnum.ACTIVITY_NOT_EXIST, area);
 		}
-		vo.setActivityNum(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
+		vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
 
 		// 活动主题 主办 协办 等相关
 		ActivityNum findActivity = activityNumService.findActivity(year.toString(), area, type);
 		if (ObjectUtil.isEmpty(findActivity)) {
 			throw new SystemModularException(ActivityNumEnum.TITLE_NOT_EXIST, area);
 		}
-		vo.setActivityTypeNum(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
-		vo.setActivityHost(findActivity.getHost());
-		vo.setActivityGuide(findActivity.getGuide());
-		vo.setActivityTitle(findActivity.getTitle());
+		vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
+		vo.setOrganizer(findActivity.getHost());
+		vo.setGuide(findActivity.getGuide());
+		vo.setTitle(findActivity.getTitle());
 
 		ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
 		activityCumulateTimes.setId(findTimes.getId());

@@ -99,12 +99,33 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             table.exportFile(tableResult.config.id, checkRows.data, 'xls');
         }
     };
+
+    // 弹出添加对话框
+    Position.openAddDlg = function (data) {
+    	var area = $("input[name='radio1']:checked").val();
+    	var type = $("input[name='radio2']:checked").val();
+    	alert(area);
+    	$("#w_warning").animate({top:"-400px"}, 200).hide(200);
+    	$("#w_mengban").delay(100).fadeOut(200);
+        func.open({
+            title: '添加活动',
+            content: Feng.ctxPath + '/view/activity/addView?area='+ area + '&type=' + type,
+            tableId: Position.tableId
+        });
+       
+    };
+
+    
     
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
         Position.search();
     });
-    
+    // 添加按钮点击事件
+    $('#btnAdd').click(function () {
+        Position.openAddDlg();
+    });
+
     // 导出excel
     $('#btnExp').click(function () {
         Position.exportExcel();

@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-
+import cn.stylefeng.guns.modular.business.Enum.ActivityUitl;
 import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityVo;
 import cn.stylefeng.guns.modular.business.pojo.ActivityParam;
@@ -22,6 +21,7 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.PostResource;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -31,6 +31,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
  * @date: Mar 11, 2021 6:25:32 PM
  *
  */
+@Slf4j
 @Controller
 @ApiResource(name = "活动管理我的活动页面渲染")
 public class ActivityViewController {
@@ -69,14 +70,16 @@ public class ActivityViewController {
 	@GetResource(name = "添加弹出层", path = "/activity/addType")
 	@ResponseBody
 	public ResponseData addType(String area, String type) {
+		log.info("area=" + area + ",type=" + type);
+
 		if (StringUtils.isEmpty(area)) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
 		if (StringUtils.isEmpty(type)) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
-		ActivityVo vo = activityService.getActivityInfo(area, type);
-		return new SuccessResponseData(JSON.toJSON(vo));
+		ActivityVo vo = activityService.getActivityInfo(ActivityUitl.getName(area), ActivityUitl.getName(type));
+		return new SuccessResponseData(vo);
 	}
 
 	/**
@@ -107,6 +110,17 @@ public class ActivityViewController {
 	@ResponseBody
 	public ResponseData detail(@Validated(ActivityParam.detail.class) ActivityParam activityParam) {
 		return new SuccessResponseData(activityService.detail(activityParam));
+	}
+
+	/**
+	 * 添加区域
+	 *
+	 * @author chenjinlong
+	 * @date 2021/1/13 19:45
+	 */
+	@GetResource(name = "我的活动新增-视图", path = "/view/activity/addView")
+	public String addArea() {
+		return "/modular/business/activity/activity_edit.html";
 	}
 
 }

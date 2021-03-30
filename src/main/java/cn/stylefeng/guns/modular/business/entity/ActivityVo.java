@@ -2,6 +2,8 @@ package cn.stylefeng.guns.modular.business.entity;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
 /***
  * 
  * @ClassName: Activity
@@ -10,6 +12,7 @@ import java.io.Serializable;
  * @date: Mar 15, 2021 6:26:37 PM
  *
  */
+@Data
 public class ActivityVo implements Serializable {
 	/**
 	 * 
@@ -17,93 +20,30 @@ public class ActivityVo implements Serializable {
 	private static final long serialVersionUID = -4794684330067412443L;
 
 	// 活动名称
-	private String activityName;
+	private String area;
 
 	// 活动编号
-	private String activityNum;
+	private String number;
 
 	// 活动类型编号
-	private String activityTypeNum;
+	private String typeNumber;
 
 	// 活动主办单位
-	private String activityHost;
+	private String organizer;
 
 	// 活动主题
-	private String activityTitle;
+	private String title;
 
 	// 活动类型
-	private String activityType;
+	private String type;
 
 	// 活动指导
-	private String activityGuide;
+	private String guide;
 
 
 	// 累计次数
-	private String cumulateTimes;
+	private String sessions;
 
 
-	public String getActivityNum() {
-		return activityNum;
-	}
-
-	public void setActivityNum(String activityNum) {
-		this.activityNum = activityNum;
-	}
-
-	public String getActivityHost() {
-		return activityHost;
-	}
-
-	public void setActivityHost(String activityHost) {
-		this.activityHost = activityHost;
-	}
-
-	public String getActivityTitle() {
-		return activityTitle;
-	}
-
-	public void setActivityTitle(String activityTitle) {
-		this.activityTitle = activityTitle;
-	}
-
-	public String getActivityType() {
-		return activityType;
-	}
-
-	public void setActivityType(String activityType) {
-		this.activityType = activityType;
-	}
-
-	public String getActivityGuide() {
-		return activityGuide;
-	}
-
-	public void setActivityGuide(String activityGuide) {
-		this.activityGuide = activityGuide;
-	}
-
-	public String getActivityName() {
-		return activityName;
-	}
-
-	public void setActivityName(String activityName) {
-		this.activityName = activityName;
-	}
-
-	public String getCumulateTimes() {
-		return cumulateTimes;
-	}
-
-	public void setCumulateTimes(String cumulateTimes) {
-		this.cumulateTimes = cumulateTimes;
-	}
-
-	public String getActivityTypeNum() {
-		return activityTypeNum;
-	}
-
-	public void setActivityTypeNum(String activityTypeNum) {
-		this.activityTypeNum = activityTypeNum;
-	}
 
 }

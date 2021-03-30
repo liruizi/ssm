@@ -2,14 +2,14 @@
 <html class="${bg!}">
 
 @/**
-@ * 模板变量
+@ *      本页面所用的模板变量
 @ *
-@ * title          :  标题
-@ * layoutContent  :  html 代码块
-@ * js             :  js 参数类型：数组
-@ * css            :  css 参数类型：数组
+@ * title          :  页面的标题
+@ * layoutContent  :  主页面的html内容
+@ * js             :  业务所需要的js，为数组
+@ * css            :  业务所需要的css，为数组
 @ * bg             :  背景颜色
-@ * plugins        :  插件 参数类型：数组
+@ * plugins        :  需要用到的插件，目前有["ztree"]
 @ **/
 
 <head>
@@ -18,12 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="${ctxPath}/assets/expand/images/favicon.ico" rel="icon">
     <title>${title!"管理系统"}</title>
-    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
     <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/expand/css/form.css?v=${constants.getReleaseVersion()}" media="all"/>
+    
+    <!-- 扩展样式 -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
     <![endif]-->
 
     <!--插件css-->
@@ -61,7 +62,7 @@ ${layoutContent}
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 
-<!-- 插件js -->
+<!--其他插件js-->
 @if(isNotEmpty(plugins)){
     <!-- ztree 由layui模块注册 建议弃用 -->
     @if(array.contain(plugins,"ztree")){
@@ -69,15 +70,15 @@ ${layoutContent}
         <script src="${ctxPath}/assets/expand/plugins/ztree/jquery.ztree.all.min.js?v=${constants.getReleaseVersion()}"></script>
     @}
     @if(array.contain(plugins,"ue")){
-        <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
-        <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.config.js?v=${constants.getReleaseVersion()}"></script>
-        <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.all.js?v=${constants.getReleaseVersion()}"></script>
+        <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js"></script>
+        <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.config.js"></script>
+        <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.all.js"></script>
     @}
     @if(array.contain(plugins,"tinymce")){
-        <script src="${ctxPath}/assets/common/libs/tinymce/tinymce.min.js?v=${constants.getReleaseVersion()}"></script>
+        <script src="${ctxPath}/assets/common/libs/tinymce/tinymce.min.js"></script>
     @}
     @if(array.contain(plugins,"pinyin")){
-        <script type="text/javascript" src="${ctxPath}/assets/common/libs/py/ChinesePY.js?v=${constants.getReleaseVersion()}"></script>
+        <script type="text/javascript" src="${ctxPath}/assets/common/libs/py/ChinesePY.js"></script>
     @}
 @}
 
@@ -88,9 +89,24 @@ ${layoutContent}
             @item = ctxPath + item;
         @}
         <script src="${item}?v=${constants.getReleaseVersion()}"></script>
-        <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
-        <script src="${ctxPath}/assets/modular/business/activity/popup.js?v=${constants.getReleaseVersion()}"></script>
     @}
 @}
+
+<script>
+    /**
+     * 按键监听esc
+     */
+    layui.use(['admin'], function () {
+        var admin = layui.admin;
+        var $ = layui.jquery;
+
+        $(window).keydown(function (event) {
+            if (event.keyCode === 27) {
+                admin.closeThisDialog();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
