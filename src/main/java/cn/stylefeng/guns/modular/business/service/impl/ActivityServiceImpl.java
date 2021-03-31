@@ -5,7 +5,6 @@ import java.util.Calendar;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -148,40 +147,10 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 
 	@Override
 	public void add(ActivityParam activityParam) {
-
-		String centent = "";
-		if (!StringUtils.isEmpty(activityParam.getContent_o())) {
-			centent += activityParam.getContent_o() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getContent_t())) {
-			centent += activityParam.getContent_t() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getContent_s())) {
-			centent += activityParam.getContent_s() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getContent_f())) {
-			centent += activityParam.getContent_f();
-		}
-		String object = "";
-		if (!StringUtils.isEmpty(activityParam.getObject_o())) {
-			object += activityParam.getObject_o() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getObject_t())) {
-			object += activityParam.getObject_t() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getObject_s())) {
-			object += activityParam.getObject_s() + ",";
-		}
-		if (!StringUtils.isEmpty(activityParam.getObject_f())) {
-			object += activityParam.getObject_f();
-		}
-
 		String str = activityParam.getTimes();
 		String[] arr = str.split("\\s+");
 		activityParam.setHour(arr[1]);
 		activityParam.setTimes(arr[0]);
-		activityParam.setContent(centent);
-		activityParam.setObject(object);
 		// 将dto转为实体
 		Activity activity = new Activity();
 		BeanUtil.copyProperties(activityParam, activity);

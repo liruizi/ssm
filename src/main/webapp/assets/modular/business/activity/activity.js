@@ -104,7 +104,6 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
     Position.openAddDlg = function (data) {
     	var area = $("input[name='radio1']:checked").val();
     	var type = $("input[name='radio2']:checked").val();
-    	alert(area);
     	$("#w_warning").animate({top:"-400px"}, 200).hide(200);
     	$("#w_mengban").delay(100).fadeOut(200);
         func.open({

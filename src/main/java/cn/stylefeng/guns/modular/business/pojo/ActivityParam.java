@@ -34,7 +34,7 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "制表日期不能为空", groups = { add.class, edit.class })
 	private String tabulationDate;
-	
+
 	/**
 	 * 行政单位
 	 */
@@ -69,7 +69,7 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "活动时间不能为空", groups = { add.class, edit.class })
 	private String times;
-	
+
 	/**
 	 * 活动时间
 	 */
@@ -183,7 +183,7 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "基本情况不能为空", groups = { add.class, edit.class })
 	private String basic;
-	
+
 	/**
 	 * 笔记本电脑
 	 */
@@ -316,15 +316,53 @@ public class ActivityParam extends BaseRequest {
 	@NotNull(message = "活动负责人不能为空", groups = { add.class, edit.class })
 	private String leader;
 
-	private String content_o;
-	private String content_t;
-	private String content_s;
-	private String content_f;
-
-	private String object_o;
-	private String object_t;
-	private String object_s;
-	private String object_f;
+	/**
+	 * 活动内容-知识普及
+	 */
+	@NotNull(message = "活动内容-知识普及", groups = { add.class, edit.class })
+	private String contentKnowledge;
+	
+	/**
+	 * 活动内容-专题指导
+	 */
+	@NotNull(message = "活动内容-专题指导", groups = { add.class, edit.class })
+	private String contentGuidance;
+	
+	/**
+	 * 活动内容-互动交流
+	 */
+	@NotNull(message = "活动内容-互动交流", groups = { add.class, edit.class })
+	private String contentExchange;
+	
+	/**
+	 * 活动内容-大型活动
+	 */
+	@NotNull(message = "活动内容-大型活动", groups = { add.class, edit.class })
+	private String contentEvent;
+	
+	/**
+	 * 活动对象-学校
+	 */
+	@NotNull(message = "活动对象-学校", groups = { add.class, edit.class })
+	private String objectSchool;
+	
+	/***
+	 * 活动对象-机关
+	 */
+	@NotNull(message = "活动对象-机关", groups = { add.class, edit.class })
+	private String objectOffice;
+	
+	/**
+	 * 活动对象-社区
+	 */
+	@NotNull(message = "活动对象-社区", groups = { add.class, edit.class })
+	private String objectCommunity;
+	
+	/**
+	 * 活动对象-部队
+	 */
+	@NotNull(message = "活动对象-部队", groups = { add.class, edit.class })
+	private String objectTroops;
 
 	/**
 	 * 创建时间

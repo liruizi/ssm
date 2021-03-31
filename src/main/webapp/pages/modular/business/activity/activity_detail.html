@@ -1,11 +1,7 @@
 @layout("/layout/_form2.html",{js:["/assets/modular/business/activity/activity_detail.js","/assets/common/activity/js/print.js","/assets/expand/plugins/jquery/jquery-3.2.1.min.js"],css:["/assets/common/activity/css/activity_add.css","/assets/common/activity/css/all.css","/assets/common/activity/css/print.css"]}){
 
 <form class="layui-form" id="activityForm" lay-filter="activityForm">
-    
-    <div class="card ">
-    <div class="card-header">
-        <button class="print-btn" onclick="doPrint()">打印</button>
-    </div>
+     <div class="card ">
 	    <div>
 	        <ccc>
 	                <div class="card-body">
@@ -13,17 +9,10 @@
 	                     	<input type="hidden" name="area" id="area"/>
 	                     	<input type="hidden" name="number" id="number"/>
 	                     	<input type="hidden" name="typeNumber" id="typeNumber"/>
-	                        <h1 class="book_h01">北京市
-	                        <input type="text" class="book_input01" id="area" name="area"/>
-	                        垃圾分类宣传培训活动任务单</h1>
+	                        <h1 class="book_h01">北京市<i style="font-style:normal;font-size:20px" id="areaName"></i>垃圾分类宣传培训活动任务单</h1>
 	                        <p class="book_p" style="padding-bottom: 13px;margin-top:-3px;">
-	                        
-	                        
-	                            <span class="book_titSpan" style="float:left">活动编号:
-	                            <input type="text" class="book_input01" style="width: 85px;" id="number" name="number"/></span>
-	                            <span class="book_titSpan"><label>类型编号:
-	                            <input type="text" class="book_input01" style="width: 85px;" id="typeNumber" name="typeNumber"/>
-	                            </label></span>
+	                            <span class="book_titSpan" style="float:left"><label>活动编号:<i style="font-style:normal" id="numberSpan"></i></label></span>
+	                            <span class="book_titSpan"><label>类型编号:<i style="font-style:normal" id="typeNumberSpan"></i></label></span>
 	                        </p>
 	                        <table class="book_table" border="1" cellpadding="10">
 	                            <tr>
@@ -59,19 +48,19 @@
 	                            <tr>
 	                                <th><label class="td_label">活动内容</label></th>
 	                                <td colspan="5">
-	                                    <label class="label_radio"><a>知识普及</a><input type="checkbox" class="input_radio" value="知识普及" name="content_o" /></label>
-	                                    <label class="label_radio"><a>专题指导</a><input type="checkbox" class="input_radio" value="专题指导" name="content_t"/></label>
-	                                    <label class="label_radio"><a>互动交流</a><input type="checkbox" class="input_radio" value="互动交流" name="content_s"/></label>
-	                                    <label class="label_radio"><a>大型活动</a><input type="checkbox" class="input_radio" value="大型活动" name="content_f"/></label>
+	                                    <label class="label_radio"><a>知识普及</a><input type="checkbox" class="input_radio" value="知识普及" name="content_knowledge" /></label>
+	                                    <label class="label_radio"><a>专题指导</a><input type="checkbox" class="input_radio" value="专题指导" name="content_guidance"/></label>
+	                                    <label class="label_radio"><a>互动交流</a><input type="checkbox" class="input_radio" value="互动交流" name="content_exchange"/></label>
+	                                    <label class="label_radio"><a>大型活动</a><input type="checkbox" class="input_radio" value="大型活动" name="content_event"/></label>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th><label class="td_label">活动对象</label></th>
 	                                <td colspan="5">
-	                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="object_o"/></label>
-	                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="object_t"/></label>
-	                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="object_s"/></label>
-	                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="object_f"/></label>
+	                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="object_school"/></label>
+	                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="object_office"/></label>
+	                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="object_community"/></label>
+	                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="object_troops"/></label>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -158,8 +147,7 @@
 	                        </table>
 	                    </div>
 	                    <div class="book_con02">
-	                        <h1 class="book_h01">北京市	                        <input type="text" class="book_input01" id="area" name="area"/>
-垃圾分类宣传培训活动确认单</h1>
+	                        <h1 class="book_h01">北京市<i style="font-style:normal;font-size:20px" id="areaName1"></i>垃圾分类宣传培训活动确认单</h1>
 	                        <p class="book_p"><span class="book_titSpan" style="margin-top:-12px;">制表日期：<input type="text" class="book_input01 dates" style="width: 75px;" id="tabulationDate" name="tabulationDate"/></span></p>
 	                        <table class="book_table" border="1" cellpadding="10">
 	                            <tr>
@@ -258,12 +246,10 @@
 	                    </div>
 	                </div>
 	        </ccc>
-    	</div>    
+	    </div>    
 	</div>
-    
-    
-    
     <div class="form-group-bottom text-center">
+        <button class="print-btn" onclick="doPrint()">打  印</button>
         <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
     </div>
 

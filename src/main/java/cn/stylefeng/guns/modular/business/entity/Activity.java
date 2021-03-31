@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.business.entity;
 
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -93,6 +94,55 @@ public class Activity extends BaseEntity {
 	 */
 	@TableField("content")
 	private String content;
+	
+	/**
+	 * 活动内容-知识普及
+	 */
+	@TableField("content_knowledge")
+	private String contentKnowledge;
+	
+	/**
+	 * 活动内容-专题指导
+	 */
+	@TableField("content_guidance")
+	private String contentGuidance;
+	
+	/**
+	 * 活动内容-互动交流
+	 */
+	@TableField("content_exchange")
+	private String contentExchange;
+	
+	/**
+	 * 活动内容-大型活动
+	 */
+	@TableField("content_event")
+	private String contentEvent;
+	
+	/**
+	 * 活动对象-学校
+	 */
+	@TableField("object_school")
+	private String objectSchool;
+	
+	/***
+	 * 活动对象-机关
+	 */
+	@TableField("object_office")
+	private String objectOffice;
+	
+	/**
+	 * 活动对象-社区
+	 */
+	@TableField("object_community")
+	private String objectCommunity;
+	
+	/**
+	 * 活动对象-部队
+	 */
+	@TableField("object_troops")
+	private String objectTroops;
+	
 
 	/**
 	 * 活动对象

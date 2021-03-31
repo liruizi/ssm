@@ -78,6 +78,46 @@ public class ActivityResult implements Serializable {
 	private String content;
 
 	/**
+	 * 活动内容-知识普及
+	 */
+	private String contentKnowledge;
+	
+	/**
+	 * 活动内容-专题指导
+	 */
+	private String contentGuidance;
+	
+	/**
+	 * 活动内容-互动交流
+	 */
+	private String contentExchange;
+	
+	/**
+	 * 活动内容-大型活动
+	 */
+	private String contentEvent;
+	
+	/**
+	 * 活动对象-学校
+	 */
+	private String objectSchool;
+	
+	/***
+	 * 活动对象-机关
+	 */
+	private String objectOffice;
+	
+	/**
+	 * 活动对象-社区
+	 */
+	private String objectCommunity;
+	
+	/**
+	 * 活动对象-部队
+	 */
+	private String objectTroops;
+
+	/**
 	 * 活动对象
 	 */
 	private String object;
