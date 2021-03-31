@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,7 +14,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.stylefeng.guns.modular.business.Enum.ActivityNumEnum;
 import cn.stylefeng.guns.modular.business.Util.SnUtils;
 import cn.stylefeng.guns.modular.business.entity.Activity;
 import cn.stylefeng.guns.modular.business.entity.ActivityCumulateTimes;
@@ -30,7 +30,6 @@ import cn.stylefeng.guns.modular.business.service.ActivityTotalService;
 import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
-import cn.stylefeng.roses.kernel.system.exception.SystemModularException;
 
 /**
  * <p>
@@ -55,6 +54,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	@Override
 	public PageResult<Activity> findPage(ActivityResult activityResult) {
 		LambdaQueryWrapper<Activity> wrapper = createWrapper(activityResult);
+		wrapper.orderByDesc(Activity::getCreateTime);
 		Page<Activity> page = this.page(PageFactory.defaultPage(), wrapper);
 		return PageResultFactory.createPageResult(page);
 	}
@@ -67,7 +67,6 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	 */
 	private LambdaQueryWrapper<Activity> createWrapper(ActivityResult activityResult) {
 		LambdaQueryWrapper<Activity> queryWrapper = new LambdaQueryWrapper<>();
-
 		if (ObjectUtil.isEmpty(activityResult)) {
 			return queryWrapper;
 		}
@@ -106,22 +105,28 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		// 活动累计次数
 		ActivityCumulateTimes findTimes = activityCumulateTimesService.findTimes(year.toString());
 		if (ObjectUtil.isEmpty(findTimes)) {
-			throw new SystemModularException(ActivityNumEnum.TIMES_NOT_EXIST, area);
+			vo.setCode("1004");
+			return vo;
+//			throw new SystemModularException(ActivityNumEnum.TIMES_NOT_EXIST, area);
 		}
 		vo.setSessions(findTimes.getNumbers().toString());
 
 		// 活动编号相关
 		ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
 		if (ObjectUtil.isEmpty(findActivityTotal)) {
-			throw new SystemModularException(ActivityNumEnum.ACTIVITY_NOT_EXIST, area);
+			vo.setCode("1003");
+			return vo;
 		}
+		
 		vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
 
 		// 活动主题 主办 协办 等相关
 		ActivityNum findActivity = activityNumService.findActivity(year.toString(), area, type);
 		if (ObjectUtil.isEmpty(findActivity)) {
-			throw new SystemModularException(ActivityNumEnum.TITLE_NOT_EXIST, area);
+			vo.setCode("1002");
+			return vo;
 		}
+		vo.setCode("1000");
 		vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
 		vo.setOrganizer(findActivity.getHost());
 		vo.setGuide(findActivity.getGuide());
@@ -172,6 +177,12 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		Activity activity = this.getById(activityParam.getId());
 
 		return activity;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(ActivityParam activityParam) {
+		this.removeById(activityParam.getId());
 	}
 
 }

@@ -44,5 +44,14 @@ public interface ActivityService extends IService<Activity> {
      * @date 2021/03/22 14:07
      */
     Activity detail(ActivityParam activityParam);
+    
+
+    /**
+     * 删除tb_activity
+     *
+     * @author fengshuonan
+     * @date 2021/03/22 14:07
+     */
+    void delete(ActivityParam activityParam);
 
 }

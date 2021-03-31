@@ -31,7 +31,9 @@
 	                                <th>
 	                                    <label class="td_label">活动时间</label>
 	                                </th>
-	                                <td colspan="5"><input type="text" class="book_input03 times" class="book_input03" name ="times" id="times"/></td>
+	                                <td colspan="5">
+	                                
+	                                <span id="hour"></span></td>
 	                            </tr>
 	                            <tr>
 	                                <th>
@@ -48,19 +50,19 @@
 	                            <tr>
 	                                <th><label class="td_label">活动内容</label></th>
 	                                <td colspan="5">
-	                                    <label class="label_radio"><a>知识普及</a><input type="checkbox" class="input_radio" value="知识普及" name="content_knowledge" /></label>
-	                                    <label class="label_radio"><a>专题指导</a><input type="checkbox" class="input_radio" value="专题指导" name="content_guidance"/></label>
-	                                    <label class="label_radio"><a>互动交流</a><input type="checkbox" class="input_radio" value="互动交流" name="content_exchange"/></label>
-	                                    <label class="label_radio"><a>大型活动</a><input type="checkbox" class="input_radio" value="大型活动" name="content_event"/></label>
+	                                    <label class="label_radio"><a>知识普及</a><input type="checkbox" class="input_radio" value="知识普及" name="contentKnowledge" id="contentKnowledge" /></label>
+	                                    <label class="label_radio"><a>专题指导</a><input type="checkbox" class="input_radio" value="专题指导" name="contentGuidance" id="contentGuidance"/></label>
+	                                    <label class="label_radio"><a>互动交流</a><input type="checkbox" class="input_radio" value="互动交流" name="contentExchange" id="contentExchange"/></label>
+	                                    <label class="label_radio"><a>大型活动</a><input type="checkbox" class="input_radio" value="大型活动" name="contentEvent"  id="contentEvent"/></label>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th><label class="td_label">活动对象</label></th>
 	                                <td colspan="5">
-	                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="object_school"/></label>
-	                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="object_office"/></label>
-	                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="object_community"/></label>
-	                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="object_troops"/></label>
+	                                    <label class="label_radio"><a>学　　校</a><input type="checkbox" class="input_radio" value="学校" name="objectSchool" id="objectSchool"/></label>
+	                                    <label class="label_radio"><a>机　　关</a><input type="checkbox" class="input_radio" value="机关" name="objectOffice" id="objectOffice"/></label>
+	                                    <label class="label_radio"><a>社　　区</a><input type="checkbox" class="input_radio" value="社区" name="objectCommunity" id="objectCommunity"/></label>
+	                                    <label class="label_radio"><a>部　　队</a><input type="checkbox" class="input_radio" value="部队" name="objectTroops" id="objectTroops"/></label>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -139,7 +141,7 @@
 	                                    <span>北京市丰台区丰体北路5号   010-63867728</span>
 	                                </td>
 	                            </tr>
-	                            <tr height="60px">
+	                            <tr height="65px">
 	                                <th colspan="6" style="text-align: left;">
 	                                    <label class="td_label">活动执行单位（盖章）</label>
 	                                </th>
@@ -149,7 +151,7 @@
 	                    <div class="book_con02">
 	                        <h1 class="book_h01">北京市<i style="font-style:normal;font-size:20px" id="areaName1"></i>垃圾分类宣传培训活动确认单</h1>
 	                        <p class="book_p"><span class="book_titSpan" style="margin-top:-12px;">制表日期：<input type="text" class="book_input01 dates" style="width: 75px;" id="tabulationDate" name="tabulationDate"/></span></p>
-	                        <table class="book_table" border="1" cellpadding="10">
+	                        <table class="book_table" border="1">
 	                            <tr>
 	                                <th>
 	                                    <label class="td_label">基本概况</label>
@@ -250,7 +252,7 @@
 	</div>
     <div class="form-group-bottom text-center">
         <button class="print-btn" onclick="doPrint()">打  印</button>
-        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
+        <button type="reset" class="print-btn" ew-event="closeDialog">&emsp;关闭&emsp;</button>
     </div>
 
 </form>

@@ -9,6 +9,7 @@ layui.use(['form', 'HttpRequest'], function () {
     document.getElementById("typeNumberSpan").innerText = decodeURIComponent(result.data.typeNumber);//类型编号
     document.getElementById("areaName").innerText = decodeURIComponent(result.data.area);//活动名称
     document.getElementById("areaName1").innerText = decodeURIComponent(result.data.area);//活动名称
+    document.getElementById("hour").innerText = decodeURIComponent(result.data.times) + " "+decodeURIComponent(result.data.hour);//时间
     form.val('activityForm', result.data);
 
 });

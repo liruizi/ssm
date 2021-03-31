@@ -40,10 +40,9 @@ public class ActivityVo implements Serializable {
 	// 活动指导
 	private String guide;
 
-
 	// 累计次数
 	private String sessions;
 
-
-
+	// 返回编号
+	private String code;
 }

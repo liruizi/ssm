@@ -14,14 +14,15 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
     // 初始化表格的列
     Position.initColumn = function () {
         return [[
-            {type: 'checkbox'},
+            
             {field: 'id', hide: true, title: '主键id'},
-            {field: 'times', sort: true, title: '活动日期',width: 140},
-            {field: 'hour', sort: true, title: '活动时间',width: 105},
-            {field: 'duration', sort: true, title: '活动时长',width: 105},
+            {field: 'times', title: '活动日期',width: 140},
+            {field: 'hour',  title: '时间',width: 70},
+            {field: 'duration',  title: '时长',width: 90},
+            {field: 'number', title: '活动编号',width: 120},
+            {field: 'typeNumber', title: '类型编号',width: 120},
             {field: 'area', title: '行政单位',width: 90},
             {field: 'address', title: '活动地点'},
-            {field: 'object',  title: '活动对象'},
             {field: 'type', title: '活动类型'},
             {field: 'people',  title: '对接单位负责人',width: 150},
             {field: 'contact',  title: '对接单位联系'},
@@ -29,7 +30,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             {field: 'leader',  title: '活动负责人'},
             {field: 'vehicleSecurity',  title: '车辆保障'},
             {field: 'driver',title: '活动司机'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', width: 70}
+            {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
 
@@ -99,7 +100,21 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             table.exportFile(tableResult.config.id, checkRows.data, 'xls');
         }
     };
-
+    // 点击删除
+    Position.delete = function (data) {
+        var operation = function () {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/activity/delete", 'post', function (data) {
+                Feng.success("删除成功!");
+                table.reload(Position.tableId);
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
+            });
+            httpRequest.set(data);
+            httpRequest.start(true);
+        };
+        Feng.confirm("是否删除?", operation);
+    };
+    
     // 弹出添加对话框
     Position.openAddDlg = function (data) {
     	var area = $("input[name='radio1']:checked").val();

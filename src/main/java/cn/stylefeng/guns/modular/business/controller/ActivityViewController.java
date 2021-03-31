@@ -2,7 +2,6 @@ package cn.stylefeng.guns.modular.business.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.PostResource;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -31,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
  * @date: Mar 11, 2021 6:25:32 PM
  *
  */
-@Slf4j
 @Controller
 @ApiResource(name = "活动管理我的活动页面渲染")
 public class ActivityViewController {
@@ -70,15 +67,21 @@ public class ActivityViewController {
 	@GetResource(name = "添加弹出层", path = "/activity/addType")
 	@ResponseBody
 	public ResponseData addType(String area, String type) {
-		log.info("area=" + area + ",type=" + type);
-
-		if (StringUtils.isEmpty(area)) {
+		if (type.equals("undefined")) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
-		if (StringUtils.isEmpty(type)) {
+		if (area.equals("undefined")) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
 		ActivityVo vo = activityService.getActivityInfo(ActivityUitl.getName(area), ActivityUitl.getName(type));
+		
+		if(vo.getCode().equals("1004")) {
+			return new ErrorResponseData("1004", "请选择合适的活动方式！");
+		}else if(vo.getCode().equals("1003")) {
+			return new ErrorResponseData("1003", "请选择合适的活动方式！");
+		}else if(vo.getCode().equals("1002")) {
+			return new ErrorResponseData("1002", "请选择合适的活动方式！");
+		}
 		return new SuccessResponseData(vo);
 	}
 
@@ -121,6 +124,19 @@ public class ActivityViewController {
 	@GetResource(name = "我的活动新增-视图", path = "/view/activity/addView")
 	public String addArea() {
 		return "/modular/business/activity/activity_edit.html";
+	}
+
+	/**
+	 * 删除tb_activity
+	 *
+	 * @author fengshuonan
+	 * @date 2021/03/22 14:07
+	 */
+	@PostResource(name = "我的活动删除-视图", path ="/activity/delete")
+	@ResponseBody
+	public ResponseData delete(@RequestBody @Validated(ActivityParam.delete.class) ActivityParam activityParam) {
+		activityService.delete(activityParam);
+		return new SuccessResponseData();
 	}
 
 }

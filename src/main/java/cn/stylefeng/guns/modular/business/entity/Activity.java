@@ -365,5 +365,10 @@ public class Activity extends BaseEntity {
 	 */
 	@TableField("leader")
 	private String leader;
+	/**
+	 * 状态
+	 */
+	@TableField("status")
+	private String status;
 
 }

@@ -363,6 +363,11 @@ public class ActivityParam extends BaseRequest {
 	 */
 	@NotNull(message = "活动对象-部队", groups = { add.class, edit.class })
 	private String objectTroops;
+	
+	/**
+	 * 状态
+	 */
+	private String status;
 
 	/**
 	 * 创建时间

@@ -301,6 +301,10 @@ public class ActivityResult implements Serializable {
 	 * 活动负责人
 	 */
 	private String leader;
+	/**
+	 * 状态
+	 */
+	private String status;
 
 	/**
 	 * 创建时间

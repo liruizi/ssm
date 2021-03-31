@@ -18,6 +18,14 @@
 		<result column="address" property="address" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
+		<result column="content_knowledge" property="contentKnowledge" />
+		<result column="content_guidance" property="contentGuidance" />
+		<result column="content_exchange" property="contentExchange" />
+		<result column="content_event" property="contentEvent" />
+		<result column="object_school" property="objectSchool" />
+		<result column="object_office" property="objectOffice" />
+		<result column="object_community" property="objectCommunity" />
+		<result column="object_troops" property="objectTroops" />
 		<result column="object" property="object" />
 		<result column="type" property="type" />
 		<result column="sessions" property="sessions" />
@@ -55,6 +63,7 @@
 		<result column="person_type" property="personType" />
 		<result column="completion" property="completion" />
 		<result column="leader" property="leader" />
+		<result column="status" property="status" />
 		<result column="create_time" property="createTime" />
 		<result column="update_time" property="updateTime" />
 		<result column="create_user" property="createUser" />
