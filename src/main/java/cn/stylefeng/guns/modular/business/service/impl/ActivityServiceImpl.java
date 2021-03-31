@@ -93,60 +93,58 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public ActivityVo getActivityInfo(String area, String type) {
-
 		ActivityVo vo = new ActivityVo();
-
-		Calendar rightNow = Calendar.getInstance();
-		Integer year = rightNow.get(Calendar.YEAR);
-		vo.setType(type);
-		vo.setArea(area);
-
-		// 活动累计次数
-		ActivityCumulateTimes findTimes = activityCumulateTimesService.findTimes(year.toString());
-		if (ObjectUtil.isEmpty(findTimes)) {
-			vo.setCode("1004");
+		if (area == null) {
+			vo.setCode("1000");
 			return vo;
-//			throw new SystemModularException(ActivityNumEnum.TIMES_NOT_EXIST, area);
+		} else {
+			Calendar rightNow = Calendar.getInstance();
+			Integer year = rightNow.get(Calendar.YEAR);
+			vo.setType(type);
+			vo.setArea(area);
+			// 活动累计次数
+			ActivityCumulateTimes findTimes = activityCumulateTimesService.findTimes(year.toString());
+			if (ObjectUtil.isEmpty(findTimes)) {
+				vo.setCode("1004");
+				return vo;
+			}
+			vo.setSessions(findTimes.getNumbers() + 1 + "");
+			// 活动编号相关
+			ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
+			if (ObjectUtil.isEmpty(findActivityTotal)) {
+				vo.setCode("1003");
+				return vo;
+			}
+			vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
+			// 活动主题 主办 协办 等相关
+			ActivityNum findActivity = activityNumService.findActivity(year.toString(), area, type);
+			if (ObjectUtil.isEmpty(findActivity)) {
+				vo.setCode("1002");
+				return vo;
+			}
+			vo.setCode("1000");
+			vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
+			vo.setOrganizer(findActivity.getHost());
+			vo.setGuide(findActivity.getGuide());
+			vo.setTitle(findActivity.getTitle());
+
+			ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
+			activityCumulateTimes.setId(findTimes.getId());
+			activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
+			activityCumulateTimesService.updateById(activityCumulateTimes);
+
+			ActivityNum activityNum = new ActivityNum();
+			activityNum.setId(findActivity.getId());
+			activityNum.setSerial(findActivity.getSerial() + 1);
+			activityNumService.updateById(activityNum);
+
+			ActivityTotal activityTotal = new ActivityTotal();
+			activityTotal.setId(findActivityTotal.getId());
+			activityTotal.setNumber(findActivityTotal.getNumber() + 1);
+			activityTotalService.updateById(activityTotal);
 		}
-		vo.setSessions(findTimes.getNumbers() + 1 + "");
-
-		// 活动编号相关
-		ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
-		if (ObjectUtil.isEmpty(findActivityTotal)) {
-			vo.setCode("1003");
-			return vo;
-		}
-
-		vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
-
-		// 活动主题 主办 协办 等相关
-		ActivityNum findActivity = activityNumService.findActivity(year.toString(), area, type);
-		if (ObjectUtil.isEmpty(findActivity)) {
-			vo.setCode("1002");
-			return vo;
-		}
-		vo.setCode("1000");
-		vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
-		vo.setOrganizer(findActivity.getHost());
-		vo.setGuide(findActivity.getGuide());
-		vo.setTitle(findActivity.getTitle());
-
-		ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
-		activityCumulateTimes.setId(findTimes.getId());
-		activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
-		activityCumulateTimesService.updateById(activityCumulateTimes);
-
-		ActivityNum activityNum = new ActivityNum();
-		activityNum.setId(findActivity.getId());
-		activityNum.setSerial(findActivity.getSerial() + 1);
-		activityNumService.updateById(activityNum);
-
-		ActivityTotal activityTotal = new ActivityTotal();
-		activityTotal.setId(findActivityTotal.getId());
-		activityTotal.setNumber(findActivityTotal.getNumber() + 1);
-		activityTotalService.updateById(activityTotal);
-
 		return vo;
 	}
 

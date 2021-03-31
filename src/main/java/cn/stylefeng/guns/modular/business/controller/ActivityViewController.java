@@ -67,10 +67,10 @@ public class ActivityViewController {
 	@GetResource(name = "添加弹出层", path = "/activity/addType")
 	@ResponseBody
 	public ResponseData addType(String area, String type) {
-		if (type.equals("undefined")) {
+		if (type.equals("undefined") || area==null) {
 			return new ErrorResponseData("400", "请选择合适的行政单位！");
 		}
-		if (area.equals("undefined")) {
+		if (area.equals("undefined") || type==null) {
 			return new ErrorResponseData("400", "请选择合适的活动方式！");
 		}
 		ActivityVo vo = activityService.getActivityInfo(ActivityUitl.getName(area), ActivityUitl.getName(type));
