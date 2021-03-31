@@ -109,7 +109,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			return vo;
 //			throw new SystemModularException(ActivityNumEnum.TIMES_NOT_EXIST, area);
 		}
-		vo.setSessions(findTimes.getNumbers().toString());
+		vo.setSessions(findTimes.getNumbers() + 1 + "");
 
 		// 活动编号相关
 		ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
@@ -117,7 +117,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			vo.setCode("1003");
 			return vo;
 		}
-		
+
 		vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
 
 		// 活动主题 主办 协办 等相关

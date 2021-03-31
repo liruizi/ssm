@@ -2,8 +2,6 @@ function f_kg(){
     $("#w_mengban").fadeIn(200);
     $("#w_warning").delay(100).show().animate({top:"75px"}, 300);
     $("#closets,#fangqi,#w_mengban").click(function() {
-    	alert("1111");
-
         $("#w_warning").animate({top:"-400px"}, 200).hide(200);
         $("#w_mengban").delay(100).fadeOut(200);
     });
