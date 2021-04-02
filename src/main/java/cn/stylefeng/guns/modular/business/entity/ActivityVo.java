@@ -42,6 +42,12 @@ public class ActivityVo implements Serializable {
 
 	// 累计次数
 	private String sessions;
+	
+	
+	private String executiveUnit;
+
+	private String unitAddress;
+
 
 	// 返回编号
 	private String code;

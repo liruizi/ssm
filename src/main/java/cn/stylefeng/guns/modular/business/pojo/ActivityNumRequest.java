@@ -40,5 +40,11 @@ public class ActivityNumRequest extends BaseRequest {
 
 	@NotBlank(message = "活动标题不能为空", groups = { add.class, edit.class })
 	private String title;
+	
+	@NotBlank(message = "活动执行单位不能为空", groups = { add.class, edit.class })
+	private String executiveUnit;
+	
+	@NotBlank(message = "活动单位地址不能为空", groups = { add.class, edit.class })
+	private String unitAddress;
 
 }

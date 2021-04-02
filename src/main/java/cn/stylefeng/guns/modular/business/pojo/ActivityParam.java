@@ -364,6 +364,11 @@ public class ActivityParam extends BaseRequest {
 	@NotNull(message = "活动对象-部队", groups = { add.class, edit.class })
 	private String objectTroops;
 	
+	
+	@NotNull(message = "活动单位地址不能为空", groups = { add.class, edit.class })
+	private String unitAddress;
+
+	
 	/**
 	 * 状态
 	 */

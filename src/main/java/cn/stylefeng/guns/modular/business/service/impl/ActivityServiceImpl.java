@@ -129,7 +129,9 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			vo.setOrganizer(findActivity.getHost());
 			vo.setGuide(findActivity.getGuide());
 			vo.setTitle(findActivity.getTitle());
-
+			vo.setUnitAddress(findActivity.getUnitAddress());
+			vo.setExecutiveUnit(findActivity.getExecutiveUnit());
+			
 			ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
 			activityCumulateTimes.setId(findTimes.getId());
 			activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);

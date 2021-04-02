@@ -370,5 +370,8 @@ public class Activity extends BaseEntity {
 	 */
 	@TableField("status")
 	private String status;
+	
+	@TableField("unit_address")
+	private String unitAddress;
 
 }

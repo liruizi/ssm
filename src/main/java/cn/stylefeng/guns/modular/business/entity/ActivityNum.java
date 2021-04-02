@@ -57,4 +57,10 @@ public class ActivityNum extends BaseEntity {
 	@TableField("title")
 	private String title;
 
+	@TableField("executive_unit")
+	private String executiveUnit;
+
+	@TableField("unit_address")
+	private String unitAddress;
+
 }
