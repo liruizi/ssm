@@ -29,7 +29,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
  *
  */
 @Controller
-@ApiResource(name = "活动管理我的活动页面渲染")
+@ApiResource(name = "活动编号页面渲染")
 public class ActivityTotalController {
 
 	@Resource
@@ -38,7 +38,7 @@ public class ActivityTotalController {
 	/**
 	 * 详情
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityTotal")
+	@GetResource(name = "活动编号-首页-视图", path = "/view/activityTotal")
 	public String indexView() {
 		return "/modular/business/activityTotal/activityTotal.html";
 	}
@@ -48,7 +48,7 @@ public class ActivityTotalController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityTotal/addView")
+	@GetResource(name = "活动编号-新增-视图", path = "/view/activityTotal/addView")
 	public String addView() {
 		return "/modular/business/activityTotal/activityTotal_add.html";
 	}
@@ -59,7 +59,7 @@ public class ActivityTotalController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityTotal/editView")
+	@GetResource(name = "活动编号-编辑-视图", path = "/view/activityTotal/editView")
 	public String editView() {
 		return "/modular/business/activityTotal/activityTotal_edit.html";
 	}
@@ -83,7 +83,7 @@ public class ActivityTotalController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "添加活动相关内容", path = "/activityTotal/add")
+	@PostResource(name = "活动编号-新增", path = "/activityTotal/add")
 	@ResponseBody
 	public ResponseData add(@RequestBody @Validated(ActivityTotalRequest.add.class) ActivityTotalRequest activityRequest) {
 		activityService.add(activityRequest);
@@ -96,7 +96,7 @@ public class ActivityTotalController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "删除活动相关内容", path = "/activityTotal/delete")
+	@PostResource(name = "活动编号-删除", path = "/activityTotal/delete")
 	@ResponseBody
 	public ResponseData delete(
 			@RequestBody @Validated(ActivityTotalRequest.delete.class) ActivityTotalRequest activityRequest) {
@@ -110,7 +110,7 @@ public class ActivityTotalController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "编辑活动相关内容", path = "/activityTotal/edit")
+	@PostResource(name = "活动编号-编辑", path = "/activityTotal/edit")
 	@ResponseBody
 	public ResponseData edit(
 			@RequestBody @Validated(ActivityTotalRequest.edit.class) ActivityTotalRequest activityRequest) {
@@ -124,7 +124,7 @@ public class ActivityTotalController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "查看详情", path = "/activityTotal/detail")
+    @GetResource(name = "活动编号-详情", path = "/activityTotal/detail")
     @ResponseBody
     public ResponseData detail(@Validated(ActivityTotalRequest.detail.class) ActivityTotalRequest activityRequest) {
     	ActivityTotal detail = activityService.detail(activityRequest);

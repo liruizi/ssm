@@ -27,7 +27,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             {field: 'people',  title: '对接单位负责人',width: 150},
             {field: 'contact',  title: '对接单位联系'},
             {field: 'theNumber',  title: '参加人数'},
-            {field: 'leader',  title: '活动负责人'},
+            {field: 'activityResp',  title: '活动负责人'},
             {field: 'vehicleSecurity',  title: '车辆保障'},
             {field: 'driver',title: '活动司机'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}

@@ -29,7 +29,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
  *
  */
 @Controller
-@ApiResource(name = "活动管理我的活动页面渲染")
+@ApiResource(name = "活动主题页面渲染")
 public class ActivityNumController {
 
 	@Resource
@@ -38,7 +38,7 @@ public class ActivityNumController {
 	/**
 	 * 详情
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityNum")
+	@GetResource(name = "活动主题-首页-视图", path = "/view/activityNum")
 	public String indexView() {
 		return "/modular/business/activityNum/activityNum.html";
 	}
@@ -48,7 +48,7 @@ public class ActivityNumController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityNum/addView")
+	@GetResource(name = "活动主题-新增-视图", path = "/view/activityNum/addView")
 	public String addView() {
 		return "/modular/business/activityNum/activityNum_add.html";
 	}
@@ -59,7 +59,7 @@ public class ActivityNumController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityNum/editView")
+	@GetResource(name = "活动主题-编辑-视图", path = "/view/activityNum/editView")
 	public String editView() {
 		return "/modular/business/activityNum/activityNum_edit.html";
 	}
@@ -83,7 +83,7 @@ public class ActivityNumController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "添加活动相关内容", path = "/activityNum/add")
+	@PostResource(name = "活动主题-新增", path = "/activityNum/add")
 	@ResponseBody
 	public ResponseData add(@RequestBody @Validated(ActivityNumRequest.add.class) ActivityNumRequest activityNumRequest) {
 		activityNumService.add(activityNumRequest);
@@ -96,7 +96,7 @@ public class ActivityNumController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "删除活动相关内容", path = "/activityNum/delete")
+	@PostResource(name = "活动主题-删除", path = "/activityNum/delete")
 	@ResponseBody
 	public ResponseData delete(
 			@RequestBody @Validated(ActivityNumRequest.delete.class) ActivityNumRequest activityNumRequest) {
@@ -110,7 +110,7 @@ public class ActivityNumController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "编辑活动相关内容", path = "/activityNum/edit")
+	@PostResource(name = "活动主题-编辑", path = "/activityNum/edit")
 	@ResponseBody
 	public ResponseData edit(
 			@RequestBody @Validated(ActivityNumRequest.edit.class) ActivityNumRequest activityNumRequest) {
@@ -124,7 +124,7 @@ public class ActivityNumController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "查看详情系统职位", path = "/activityNum/detail")
+    @GetResource(name = "活动主题-详情", path = "/activityNum/detail")
     @ResponseBody
     public ResponseData detail(@Validated(ActivityNumRequest.detail.class) ActivityNumRequest activityNumRequest) {
     	ActivityNum detail = activityNumService.detail(activityNumRequest);

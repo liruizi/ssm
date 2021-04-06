@@ -29,7 +29,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
  *
  */
 @Controller
-@ApiResource(name = "活动管理累计次数页面渲染")
+@ApiResource(name = "活动累计次数页面渲染")
 public class ActivityCumulateTimesController {
 
 	@Resource
@@ -38,7 +38,7 @@ public class ActivityCumulateTimesController {
 	/**
 	 * 详情
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityCumulateTimes")
+	@GetResource(name = "活动累计次数-首页-视图", path = "/view/activityCumulateTimes")
 	public String indexView() {
 		return "/modular/business/activityCumulateTimes/activityCumulateTimes.html";
 	}
@@ -48,7 +48,7 @@ public class ActivityCumulateTimesController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityCumulateTimes/addView")
+	@GetResource(name = "活动累计次数-新增-视图", path = "/view/activityCumulateTimes/addView")
 	public String addView() {
 		return "/modular/business/activityCumulateTimes/activityCumulateTimes_add.html";
 	}
@@ -59,7 +59,7 @@ public class ActivityCumulateTimesController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@GetResource(name = "我的活动相关-首页-视图", path = "/view/activityCumulateTimes/editView")
+	@GetResource(name = "活动累计次数-编辑-视图", path = "/view/activityCumulateTimes/editView")
 	public String editView() {
 		return "/modular/business/activityCumulateTimes/activityCumulateTimes_edit.html";
 	}
@@ -83,7 +83,7 @@ public class ActivityCumulateTimesController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "添加活动相关内容", path = "/activityCumulateTimes/add")
+	@PostResource(name = "活动累计次数-新增", path = "/activityCumulateTimes/add")
 	@ResponseBody
 	public ResponseData add(@RequestBody @Validated(ActivityCumulateTimesRequest.add.class) ActivityCumulateTimesRequest activityRequest) {
 		activityService.add(activityRequest);
@@ -96,7 +96,7 @@ public class ActivityCumulateTimesController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "删除活动相关内容", path = "/activityCumulateTimes/delete")
+	@PostResource(name = "活动累计次数-删除", path = "/activityCumulateTimes/delete")
 	@ResponseBody
 	public ResponseData delete(
 			@RequestBody @Validated(ActivityCumulateTimesRequest.delete.class) ActivityCumulateTimesRequest activityRequest) {
@@ -110,7 +110,7 @@ public class ActivityCumulateTimesController {
 	 * @author chenjinlong
 	 * @date 2020/11/04 11:07
 	 */
-	@PostResource(name = "编辑活动相关内容", path = "/activityCumulateTimes/edit")
+	@PostResource(name = "活动累计次数-编辑", path = "/activityCumulateTimes/edit")
 	@ResponseBody
 	public ResponseData edit(
 			@RequestBody @Validated(ActivityCumulateTimesRequest.edit.class) ActivityCumulateTimesRequest activityRequest) {
@@ -124,7 +124,7 @@ public class ActivityCumulateTimesController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "查看详情", path = "/activityCumulateTimes/detail")
+    @GetResource(name = "活动累计次数-详情", path = "/activityCumulateTimes/detail")
     @ResponseBody
     public ResponseData detail(@Validated(ActivityCumulateTimesRequest.detail.class) ActivityCumulateTimesRequest activityRequest) {
     	ActivityCumulateTimes detail = activityService.detail(activityRequest);

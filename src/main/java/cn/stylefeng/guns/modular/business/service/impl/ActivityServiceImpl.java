@@ -131,7 +131,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 			vo.setTitle(findActivity.getTitle());
 			vo.setUnitAddress(findActivity.getUnitAddress());
 			vo.setExecutiveUnit(findActivity.getExecutiveUnit());
-			
+
 			ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
 			activityCumulateTimes.setId(findTimes.getId());
 			activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
@@ -183,6 +183,15 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 	@Transactional(rollbackFor = Exception.class)
 	public void delete(ActivityParam activityParam) {
 		this.removeById(activityParam.getId());
+	}
+
+	@Override
+	public void edit(ActivityParam activityParam) {
+		// 根据id查询实体
+		Activity activity = this.queryActivity(activityParam);
+		// 请求参数转化为实体
+		BeanUtil.copyProperties(activityParam, activity);
+		this.updateById(activity);
 	}
 
 }

@@ -11,5 +11,5 @@ layui.use(['form', 'HttpRequest'], function () {
     document.getElementById("areaName1").innerText = decodeURIComponent(result.data.area);//活动名称
     document.getElementById("hour").innerText = decodeURIComponent(result.data.times) + " "+decodeURIComponent(result.data.hour);//时间
     form.val('activityForm', result.data);
-
+    
 });

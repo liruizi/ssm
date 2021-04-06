@@ -30,7 +30,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
  *
  */
 @Controller
-@ApiResource(name = "活动管理我的活动页面渲染")
+@ApiResource(name = "我的活动页面渲染")
 public class ActivityViewController {
 
 	@Autowired
@@ -64,7 +64,7 @@ public class ActivityViewController {
 	 * @param type
 	 * @return
 	 */
-	@GetResource(name = "添加弹出层", path = "/activity/addType")
+	@GetResource(name = "我的活动-新增", path = "/activity/addType")
 	@ResponseBody
 	public ResponseData addType(String area, String type) {
 		if (type.equals("undefined") || area==null) {
@@ -91,7 +91,7 @@ public class ActivityViewController {
 	 * @author fengshuonan
 	 * @date 2021/03/22 14:07
 	 */
-	@PostResource(name = "我的活动新增", path = "/activity/add")
+	@PostResource(name = "我的活动-新增", path = "/activity/add")
 	@ResponseBody
 	public ResponseData add(@RequestBody ActivityParam activityParam) {
 		activityService.add(activityParam);
@@ -104,12 +104,12 @@ public class ActivityViewController {
 	 * @author chenjinlong
 	 * @date 2021/1/13 19:45
 	 */
-	@GetResource(name = "我的活动详情-视图", path = "/view/activity/detailView")
+	@GetResource(name = "我的活动-详情-视图", path = "/view/activity/detailView")
 	public String detailView() {
 		return "/modular/business/activity/activity_detail.html";
 	}
 
-	@GetResource(name = "我的活动详情-视图", path = "/activityManager/detail")
+	@GetResource(name = "活动管理-详情", path = "/activityManager/detail")
 	@ResponseBody
 	public ResponseData detail(@Validated(ActivityParam.detail.class) ActivityParam activityParam) {
 		return new SuccessResponseData(activityService.detail(activityParam));
@@ -121,7 +121,7 @@ public class ActivityViewController {
 	 * @author chenjinlong
 	 * @date 2021/1/13 19:45
 	 */
-	@GetResource(name = "我的活动新增-视图", path = "/view/activity/addView")
+	@GetResource(name = "活动管理-新增-视图", path = "/view/activity/addView")
 	public String addArea() {
 		return "/modular/business/activity/activity_edit.html";
 	}
@@ -132,11 +132,10 @@ public class ActivityViewController {
 	 * @author fengshuonan
 	 * @date 2021/03/22 14:07
 	 */
-	@PostResource(name = "我的活动删除-视图", path ="/activity/delete")
+	@PostResource(name = "活动管理-删除", path ="/activity/delete")
 	@ResponseBody
 	public ResponseData delete(@RequestBody @Validated(ActivityParam.delete.class) ActivityParam activityParam) {
 		activityService.delete(activityParam);
 		return new SuccessResponseData();
 	}
-
 }

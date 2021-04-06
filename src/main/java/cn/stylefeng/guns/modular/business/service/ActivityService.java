@@ -53,5 +53,10 @@ public interface ActivityService extends IService<Activity> {
      * @date 2021/03/22 14:07
      */
     void delete(ActivityParam activityParam);
+    
+    void edit(ActivityParam activityParam);
+    
+    
+    
 
 }
