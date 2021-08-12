@@ -12,7 +12,6 @@
 //import cn.stylefeng.guns.modular.business.service.ActivityService;
 //import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 //import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
-//
 ///**
 // * tb_activity 控制器
 // *
