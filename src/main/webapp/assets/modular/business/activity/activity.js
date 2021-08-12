@@ -17,7 +17,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             
             {field: 'id', hide: true, title: '主键id'},
             {field: 'times', title: '活动日期',width: 140},
-            {field: 'duration',  title: '时长',width: 90},
+            {field: 'hour',  title: '时间',width: 70},
             {field: 'number', title: '活动编号',width: 120},
             {field: 'typeNumber', title: '类型编号',width: 120},
             {field: 'area', title: '行政单位',width: 90},
@@ -28,7 +28,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             {field: 'activityResp',  title: '活动负责人'},
             {field: 'vehicleSecurity',  title: '车辆保障'},
             {field: 'driver',title: '活动司机'},
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
+            {align: 'center', toolbar: '#tableBar', title: '操作',width: 160}
         ]];
     };
 
