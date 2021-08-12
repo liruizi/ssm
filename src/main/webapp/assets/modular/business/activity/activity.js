@@ -17,7 +17,6 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             
             {field: 'id', hide: true, title: '主键id'},
             {field: 'times', title: '活动日期',width: 140},
-            {field: 'hour',  title: '时间',width: 70},
             {field: 'duration',  title: '时长',width: 90},
             {field: 'number', title: '活动编号',width: 120},
             {field: 'typeNumber', title: '类型编号',width: 120},
@@ -25,7 +24,6 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
             {field: 'address', title: '活动地点'},
             {field: 'type', title: '活动类型'},
             {field: 'people',  title: '对接单位负责人',width: 150},
-            {field: 'contact',  title: '对接单位联系'},
             {field: 'theNumber',  title: '参加人数'},
             {field: 'activityResp',  title: '活动负责人'},
             {field: 'vehicleSecurity',  title: '车辆保障'},
@@ -54,8 +52,8 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
     // 点击编辑
     Position.openEditDlg = function (data) {
         func.open({
-            title: '修改职位',
-            content: Feng.ctxPath + '/view/position/editView?positionId=' + data.positionId,
+            title: '编辑我的活动',
+            content: Feng.ctxPath + '/view/activity/editView?id=' + data.id,
             tableId: Position.tableId
         });
     };
@@ -153,7 +151,7 @@ layui.use(['table', 'form', 'func', 'laydate', 'HttpRequest', 'util'], function 
         } else if (event === 'delete') {
             Position.delete(data);
         } else if (event === 'detail') {
-        	Position.openDetailDlg(data);
+        		Position.openDetailDlg(data);
         }
     });
 });

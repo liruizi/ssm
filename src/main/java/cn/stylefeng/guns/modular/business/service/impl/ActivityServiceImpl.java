@@ -111,13 +111,14 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 				return vo;
 			}
 			vo.setSessions(findTimes.getNumbers() + 1 + "");
+
 			// 活动编号相关
 			ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), area);
 			if (ObjectUtil.isEmpty(findActivityTotal)) {
 				vo.setCode("1003");
 				return vo;
 			}
-			vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber(), 3));
+			vo.setNumber(findActivityTotal.getPrefix() + SnUtils.getSn(findActivityTotal.getNumber() + 1, 3));
 			// 活动主题 主办 协办 等相关
 			ActivityNum findActivity = activityNumService.findActivity(year.toString(), area, type);
 			if (ObjectUtil.isEmpty(findActivity)) {
@@ -125,27 +126,28 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 				return vo;
 			}
 			vo.setCode("1000");
-			vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial(), 3));
+			vo.setTypeNumber(findActivity.getTypeSerial() + SnUtils.getSn(findActivity.getSerial() + 1, 3));
 			vo.setOrganizer(findActivity.getHost());
 			vo.setGuide(findActivity.getGuide());
 			vo.setTitle(findActivity.getTitle());
 			vo.setUnitAddress(findActivity.getUnitAddress());
 			vo.setExecutiveUnit(findActivity.getExecutiveUnit());
 
-			ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
-			activityCumulateTimes.setId(findTimes.getId());
-			activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
-			activityCumulateTimesService.updateById(activityCumulateTimes);
-
-			ActivityNum activityNum = new ActivityNum();
-			activityNum.setId(findActivity.getId());
-			activityNum.setSerial(findActivity.getSerial() + 1);
-			activityNumService.updateById(activityNum);
-
-			ActivityTotal activityTotal = new ActivityTotal();
-			activityTotal.setId(findActivityTotal.getId());
-			activityTotal.setNumber(findActivityTotal.getNumber() + 1);
-			activityTotalService.updateById(activityTotal);
+			// ActivityCumulateTimes activityCumulateTimes = new
+			// ActivityCumulateTimes();
+			// activityCumulateTimes.setId(findTimes.getId());
+			// activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
+			// activityCumulateTimesService.updateById(activityCumulateTimes);
+			//
+			// ActivityNum activityNum = new ActivityNum();
+			// activityNum.setId(findActivity.getId());
+			// activityNum.setSerial(findActivity.getSerial() + 1);
+			// activityNumService.updateById(activityNum);
+			//
+			// ActivityTotal activityTotal = new ActivityTotal();
+			// activityTotal.setId(findActivityTotal.getId());
+			// activityTotal.setNumber(findActivityTotal.getNumber() + 1);
+			// activityTotalService.updateById(activityTotal);
 		}
 		return vo;
 	}
@@ -159,6 +161,30 @@ public class ActivityServiceImpl extends ServiceImpl<ActivitMapper, Activity> im
 		// 将dto转为实体
 		Activity activity = new Activity();
 		BeanUtil.copyProperties(activityParam, activity);
+		Calendar rightNow = Calendar.getInstance();
+		Integer year = rightNow.get(Calendar.YEAR);
+		// 活动累计次数
+		ActivityCumulateTimes findTimes = activityCumulateTimesService.findTimes(year.toString());
+		ActivityCumulateTimes activityCumulateTimes = new ActivityCumulateTimes();
+		activityCumulateTimes.setId(findTimes.getId());
+		activityCumulateTimes.setNumbers(findTimes.getNumbers() + 1);
+		activityCumulateTimesService.updateById(activityCumulateTimes);
+
+
+		// 活动编号相关
+		ActivityTotal findActivityTotal = activityTotalService.findActivityTotal(year.toString(), activityParam.getArea());
+		ActivityTotal activityTotal = new ActivityTotal();
+		activityTotal.setId(findActivityTotal.getId());
+		activityTotal.setNumber(findActivityTotal.getNumber() + 1);
+		activityTotalService.updateById(activityTotal);
+		
+		// 活动主题 主办 协办 等相关
+		ActivityNum findActivity = activityNumService.findActivity(year.toString(), activityParam.getArea(), activityParam.getType());
+		ActivityNum activityNum = new ActivityNum();
+		activityNum.setId(findActivity.getId());
+		activityNum.setSerial(findActivity.getSerial() + 1);
+		activityNumService.updateById(activityNum);
+
 		this.save(activity);
 	}
 

@@ -55,8 +55,5 @@ public interface ActivityService extends IService<Activity> {
     void delete(ActivityParam activityParam);
     
     void edit(ActivityParam activityParam);
-    
-    
-    
-
+  
 }

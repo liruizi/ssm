@@ -109,12 +109,31 @@ public class ActivityViewController {
 		return "/modular/business/activity/activity_detail.html";
 	}
 
+	/**
+	 * 业务日志修改-视图
+	 *
+	 * @author chenjinlong
+	 * @date 2021/1/13 19:45
+	 */
+	@GetResource(name = "我的活动-编辑-视图", path = "/view/activity/editView")
+	public String editView() {
+		return "/modular/business/activity/activity_edit_new.html";
+	}
+	
+	@PostResource(name = "活动管理-编辑", path = "/view/activity/edit")
+	@ResponseBody
+	public ResponseData edit(@RequestBody ActivityParam activityParam) {
+		activityService.edit(activityParam);
+		return new SuccessResponseData();
+	}
+	
 	@GetResource(name = "活动管理-详情", path = "/activityManager/detail")
 	@ResponseBody
 	public ResponseData detail(@Validated(ActivityParam.detail.class) ActivityParam activityParam) {
 		return new SuccessResponseData(activityService.detail(activityParam));
 	}
 
+	
 	/**
 	 * 添加区域
 	 *
@@ -126,6 +145,7 @@ public class ActivityViewController {
 		return "/modular/business/activity/activity_edit.html";
 	}
 
+	
 	/**
 	 * 删除tb_activity
 	 *

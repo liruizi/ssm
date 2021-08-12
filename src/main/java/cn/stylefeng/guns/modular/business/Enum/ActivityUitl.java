@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum ActivityUitl {
-	dcq("dcq", "东城区"), xcq("cxq", "西城区"), hdq("hdq", "海淀区"), cyq("cyq", "朝阳区"), mtg("mtg", "门头沟"), tz("tz", "通州区"),
+	dcq("dcq", "东城区"), xcq("xcq", "西城区"), hdq("hdq", "海淀区"), cyq("cyq", "朝阳区"), mtg("mtg", "门头沟"), tz("tz", "通州区"),
 	bj("bj", "北京市"), xk("xk", "小康"), dxhd("dxhd", "大型活动"), dzjg("dzjg", "党政机关"), cghd("cghd", "参观活动"),
 	sqpx("sqpx", "社区培训"), xx("xx", "学校"),jyjd("jyjd", "教育基地");
 
